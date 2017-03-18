@@ -1,0 +1,846 @@
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\IBrushes.exe
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\IBrushes.pdb
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Collections.dll
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Essentials.dll
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Syntax.dll
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Utilities.dll
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Collections.pdb
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Collections.xml
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Essentials.pdb
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Essentials.xml
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Syntax.pdb
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Syntax.xml
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Utilities.pdb
+D:\Projects\Sketch\Demo\IBrushes\bin\Release\Loyc.Utilities.xml
+D:\Projects\Sketch\Demo\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+D:\Projects\Sketch\Demo\IBrushes\obj\Release\IBrushes.FormAirBrush.resources
+D:\Projects\Sketch\Demo\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+D:\Projects\Sketch\Demo\IBrushes\obj\Release\IBrushes.SketchView.resources
+D:\Projects\Sketch\Demo\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+D:\Projects\Sketch\Demo\IBrushes\obj\Release\IBrushes.exe
+D:\Projects\Sketch\Demo\IBrushes\obj\Release\IBrushes.pdb
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\IBrushes.exe
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\IBrushes.pdb
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Collections.dll
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Essentials.dll
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Syntax.dll
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Utilities.dll
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Collections.pdb
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Collections.xml
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Essentials.pdb
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Essentials.xml
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Syntax.pdb
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Syntax.xml
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Utilities.pdb
+D:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Utilities.xml
+D:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+D:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.FormAirBrush.resources
+D:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+D:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.SketchView.resources
+D:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+D:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.exe
+D:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.pdb
+E:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.exe
+E:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.pdb
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\IBrushes.exe
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\IBrushes.pdb
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Collections.dll
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Essentials.dll
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Syntax.dll
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Utilities.dll
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Collections.pdb
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Collections.xml
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Essentials.pdb
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Essentials.xml
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Syntax.pdb
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Syntax.xml
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Utilities.pdb
+E:\Projects\Sketch\Demo\source_codes\IBrushes\bin\Release\Loyc.Utilities.xml
+E:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.FormAirBrush.resources
+E:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+E:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.SketchView.resources
+E:\Projects\Sketch\Demo\source_codes\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+E:\代码\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.exe
+E:\代码\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.pdb
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\IBrushes.exe
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\IBrushes.pdb
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Collections.dll
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Essentials.dll
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Syntax.dll
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Utilities.dll
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Collections.pdb
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Collections.xml
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Essentials.pdb
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Essentials.xml
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Syntax.pdb
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Syntax.xml
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Utilities.pdb
+E:\代码\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Utilities.xml
+E:\代码\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\代码\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.FormAirBrush.resources
+E:\代码\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+E:\代码\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.SketchView.resources
+E:\代码\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.exe
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.pdb
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\IBrushes.exe
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\IBrushes.pdb
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Collections.dll
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Essentials.dll
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Syntax.dll
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Utilities.dll
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Collections.pdb
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Collections.xml
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Essentials.pdb
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Essentials.xml
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Syntax.pdb
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Syntax.xml
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Utilities.pdb
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\bin\Release\Loyc.Utilities.xml
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+E:\代码\smartCanvas\code_released_smartCanvas\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+E:\项目\augmented_sketching\code\IBrushes\obj\Release\IBrushes.exe
+E:\项目\augmented_sketching\code\IBrushes\obj\Release\IBrushes.pdb
+E:\项目\augmented_sketching\code\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\项目\augmented_sketching\code\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+E:\项目\augmented_sketching\code\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+E:\项目\augmented_sketching\code\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+E:\项目\augmented_sketching\code\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\IBrushes.exe.config
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\IBrushes.exe
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\IBrushes.pdb
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Collections.dll
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Essentials.dll
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Syntax.dll
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Utilities.dll
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Collections.pdb
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Collections.xml
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Essentials.pdb
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Essentials.xml
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Syntax.pdb
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Syntax.xml
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Utilities.pdb
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Loyc.Utilities.xml
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Microsoft.Kinect.dll
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\Microsoft.Kinect.xml
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\OpenTK.dll
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\OpenTK.GLControl.dll
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\OpenTK.pdb
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\OpenTK.xml
+E:\项目\augmented_sketching\code\IBrushes\bin\Release\OpenTK.GLControl.xml
+D:\rgbd_canvas\code\IBrushes\bin\Release\IBrushes.exe.config
+D:\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.exe
+D:\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.pdb
+D:\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+D:\rgbd_canvas\code\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+D:\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+D:\rgbd_canvas\code\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+D:\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+D:\rgbd_canvas\code\IBrushes\bin\Release\IBrushes.exe
+D:\rgbd_canvas\code\IBrushes\bin\Release\IBrushes.pdb
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Collections.dll
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Essentials.dll
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Syntax.dll
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Utilities.dll
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Collections.pdb
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Collections.xml
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Essentials.pdb
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Essentials.xml
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Syntax.pdb
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Syntax.xml
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Utilities.pdb
+D:\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Utilities.xml
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\IBrushes.exe.config
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.exe
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.pdb
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\IBrushes.exe
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\IBrushes.pdb
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Collections.dll
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Essentials.dll
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Syntax.dll
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Utilities.dll
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Microsoft.Kinect.dll
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.dll
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.GLControl.dll
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Collections.pdb
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Collections.xml
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Essentials.pdb
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Essentials.xml
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Syntax.pdb
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Syntax.xml
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Utilities.pdb
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Utilities.xml
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Microsoft.Kinect.xml
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.pdb
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.xml
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.GLControl.xml
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+E:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+D:\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.dll
+D:\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.GLControl.dll
+D:\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.pdb
+D:\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.xml
+D:\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.GLControl.xml
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\IBrushes.exe.config
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.exe
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.pdb
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\IBrushes.exe
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\IBrushes.pdb
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Collections.dll
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Essentials.dll
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Syntax.dll
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Utilities.dll
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.dll
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.GLControl.dll
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Collections.pdb
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Collections.xml
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Essentials.pdb
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Essentials.xml
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Syntax.pdb
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Syntax.xml
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Utilities.pdb
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Loyc.Utilities.xml
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\Microsoft.Kinect.xml
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.pdb
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.xml
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\bin\Release\OpenTK.GLControl.xml
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+D:\项目\augmented_sketching\rgbd_canvas\code\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\IBrushes.exe.config
+C:\Users\Dell\Desktop\ori-code\IBrushes\obj\Release\IBrushes.exe
+C:\Users\Dell\Desktop\ori-code\IBrushes\obj\Release\IBrushes.pdb
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\IBrushes.exe
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\IBrushes.pdb
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.dll
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.MachineLearning.dll
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.Math.dll
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.Statistics.dll
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Collections.dll
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Essentials.dll
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Syntax.dll
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Utilities.dll
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Microsoft.Kinect.dll
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\ZedGraph.dll
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.pdb
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.MachineLearning.pdb
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.MachineLearning.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.Math.pdb
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.Math.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.Statistics.pdb
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Accord.Statistics.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Collections.pdb
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Collections.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Essentials.pdb
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Essentials.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Syntax.pdb
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Syntax.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Utilities.pdb
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Loyc.Utilities.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\Microsoft.Kinect.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\OpenTK.pdb
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\OpenTK.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\OpenTK.GLControl.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\bin\Release\ZedGraph.xml
+C:\Users\Dell\Desktop\ori-code\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Desktop\ori-code\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+C:\Users\Dell\Desktop\ori-code\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+C:\Users\Dell\Desktop\ori-code\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+C:\Users\Dell\Desktop\ori-code\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+G:\ori-code\IBrushes\bin\Release\IBrushes.exe.config
+G:\ori-code\IBrushes\obj\Release\IBrushes.exe
+G:\ori-code\IBrushes\obj\Release\IBrushes.pdb
+G:\ori-code\IBrushes\bin\Release\IBrushes.exe
+G:\ori-code\IBrushes\bin\Release\IBrushes.pdb
+G:\ori-code\IBrushes\bin\Release\Loyc.Collections.dll
+G:\ori-code\IBrushes\bin\Release\Loyc.Essentials.dll
+G:\ori-code\IBrushes\bin\Release\Loyc.Syntax.dll
+G:\ori-code\IBrushes\bin\Release\Loyc.Utilities.dll
+G:\ori-code\IBrushes\bin\Release\Accord.pdb
+G:\ori-code\IBrushes\bin\Release\Accord.xml
+G:\ori-code\IBrushes\bin\Release\Accord.MachineLearning.pdb
+G:\ori-code\IBrushes\bin\Release\Accord.MachineLearning.xml
+G:\ori-code\IBrushes\bin\Release\Accord.Math.pdb
+G:\ori-code\IBrushes\bin\Release\Accord.Math.xml
+G:\ori-code\IBrushes\bin\Release\Accord.Statistics.pdb
+G:\ori-code\IBrushes\bin\Release\Accord.Statistics.xml
+G:\ori-code\IBrushes\bin\Release\Loyc.Collections.pdb
+G:\ori-code\IBrushes\bin\Release\Loyc.Collections.xml
+G:\ori-code\IBrushes\bin\Release\Loyc.Essentials.pdb
+G:\ori-code\IBrushes\bin\Release\Loyc.Essentials.xml
+G:\ori-code\IBrushes\bin\Release\Loyc.Syntax.pdb
+G:\ori-code\IBrushes\bin\Release\Loyc.Syntax.xml
+G:\ori-code\IBrushes\bin\Release\Loyc.Utilities.pdb
+G:\ori-code\IBrushes\bin\Release\Loyc.Utilities.xml
+G:\ori-code\IBrushes\bin\Release\Microsoft.Kinect.xml
+G:\ori-code\IBrushes\bin\Release\OpenTK.pdb
+G:\ori-code\IBrushes\bin\Release\OpenTK.xml
+G:\ori-code\IBrushes\bin\Release\OpenTK.GLControl.xml
+G:\ori-code\IBrushes\bin\Release\ZedGraph.xml
+G:\ori-code\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+G:\ori-code\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+G:\ori-code\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+G:\ori-code\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+G:\ori-code\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\IBrushes.exe.config
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\obj\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\obj\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Collections.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Essentials.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Syntax.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Utilities.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Accord.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Accord.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Accord.MachineLearning.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Accord.MachineLearning.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Accord.Math.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Accord.Math.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Accord.Statistics.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Accord.Statistics.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Collections.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Collections.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Essentials.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Essentials.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Syntax.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Syntax.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Utilities.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Loyc.Utilities.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\Microsoft.Kinect.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\OpenTK.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\OpenTK.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\OpenTK.GLControl.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\Release\ZedGraph.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\IBrushes.exe.config
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Emgu.CV.UI.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Emgu.CV.World.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Collections.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Essentials.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Syntax.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Utilities.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.MachineLearning.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.MachineLearning.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.Math.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.Math.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.Statistics.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.Statistics.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Emgu.CV.UI.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Emgu.CV.World.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Collections.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Collections.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Essentials.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Essentials.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Syntax.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Syntax.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Utilities.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Utilities.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Microsoft.Kinect.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\OpenTK.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\OpenTK.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\OpenTK.GLControl.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\ZedGraph.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\IBrushes.exe.config
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\IBrushes.exe
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\IBrushes.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\IBrushes.exe
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\IBrushes.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.MachineLearning.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.Math.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.Statistics.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Collections.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Essentials.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Syntax.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Utilities.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\ZedGraph.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.MachineLearning.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.MachineLearning.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.Math.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.Math.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.Statistics.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Accord.Statistics.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Emgu.CV.UI.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Emgu.CV.World.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Collections.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Collections.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Essentials.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Essentials.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Syntax.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Syntax.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Utilities.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Loyc.Utilities.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\Microsoft.Kinect.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\OpenTK.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\OpenTK.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\OpenTK.GLControl.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\bin\Release\ZedGraph.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.6)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\IBrushes.exe.config
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\obj\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\obj\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Emgu.CV.UI.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Emgu.CV.World.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Collections.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Essentials.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Syntax.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Utilities.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Accord.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Accord.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Accord.MachineLearning.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Accord.MachineLearning.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Accord.Math.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Accord.Math.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Accord.Statistics.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Accord.Statistics.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Emgu.CV.UI.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Emgu.CV.World.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Collections.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Collections.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Essentials.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Essentials.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Syntax.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Syntax.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Utilities.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Loyc.Utilities.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\Microsoft.Kinect.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\OpenTK.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\OpenTK.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\OpenTK.GLControl.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\bin\Release\ZedGraph.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.21)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\IBrushes.exe.config
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Emgu.CV.UI.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Emgu.CV.World.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Collections.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Essentials.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Syntax.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Utilities.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Emgu.CV.UI.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Emgu.CV.World.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Collections.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Collections.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Essentials.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Essentials.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Syntax.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Syntax.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Utilities.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\bin\Release\Loyc.Utilities.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\obj\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\obj\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.24)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\IBrushes.exe.config
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\obj\Release\IBrushes.exe
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\obj\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\IBrushes.exe.config
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\obj\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\obj\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Emgu.CV.UI.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Emgu.CV.World.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Collections.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Essentials.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Syntax.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Utilities.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Emgu.CV.UI.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Emgu.CV.World.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Collections.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Collections.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Essentials.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Essentials.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Syntax.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Syntax.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Utilities.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Loyc.Utilities.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Accord.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Accord.MachineLearning.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Accord.Math.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.25)\IBrushes\bin\Release\Accord.Statistics.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\IBrushes.exe.config
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.UI.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.World.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Collections.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Essentials.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Syntax.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Utilities.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.UI.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.World.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Collections.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Collections.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Essentials.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Essentials.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Syntax.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Syntax.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Utilities.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Utilities.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\IBrushes.exe.config
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\IBrushes.exe
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\IBrushes.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\IBrushes.exe
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\IBrushes.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.UI.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.World.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Collections.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Essentials.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Syntax.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Utilities.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.UI.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Emgu.CV.World.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Collections.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Collections.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Essentials.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Essentials.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Syntax.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Syntax.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Utilities.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(10.27)\IBrushes\bin\Release\Loyc.Utilities.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\IBrushes.exe.config
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\obj\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\obj\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Emgu.CV.UI.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Emgu.CV.World.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Collections.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Essentials.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Syntax.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Utilities.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Emgu.CV.UI.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Emgu.CV.World.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Collections.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Collections.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Essentials.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Essentials.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Syntax.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Syntax.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Utilities.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\bin\Release\Loyc.Utilities.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.5 new)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\IBrushes.exe.config
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\obj\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\obj\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Emgu.CV.UI.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Emgu.CV.World.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Collections.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Essentials.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Syntax.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Utilities.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Emgu.CV.UI.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Emgu.CV.World.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Collections.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Collections.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Essentials.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Essentials.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Syntax.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Syntax.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Utilities.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\bin\Release\Loyc.Utilities.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.6 do optimize)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\IBrushes.exe.config
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.UI.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.World.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Collections.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Essentials.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Syntax.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Utilities.dll
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.UI.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.World.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Collections.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Collections.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Essentials.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Essentials.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Syntax.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Syntax.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Utilities.pdb
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Utilities.xml
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\IBrushes.exe.config
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\IBrushes.exe
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\IBrushes.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\IBrushes.exe
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\IBrushes.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.UI.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.World.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Collections.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Essentials.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Syntax.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Utilities.dll
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.UI.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Emgu.CV.World.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Collections.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Collections.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Essentials.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Essentials.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Syntax.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Syntax.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Utilities.pdb
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\bin\Release\Loyc.Utilities.xml
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+E:\projects\2.rgbd modeling\RGBD_to_point cloud(11.14 begin cubiod)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\IBrushes.exe.config
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\IBrushes.exe
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\IBrushes.pdb
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.UI.dll
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.World.dll
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Collections.dll
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Essentials.dll
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Syntax.dll
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Utilities.dll
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.UI.xml
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.World.xml
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Collections.pdb
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Collections.xml
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Essentials.pdb
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Essentials.xml
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Syntax.pdb
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Syntax.xml
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Utilities.pdb
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Utilities.xml
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+F:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\IBrushes.exe.config
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.exe
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.pdb
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\IBrushes.exe
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\IBrushes.pdb
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.DebuggerVisualizers.VS2013.dll
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.UI.dll
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.UI.GL.dll
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.World.dll
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Collections.dll
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Essentials.dll
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Syntax.dll
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Utilities.dll
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.UI.xml
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Emgu.CV.World.xml
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Collections.pdb
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Collections.xml
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Essentials.pdb
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Essentials.xml
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Syntax.pdb
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Syntax.xml
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Utilities.pdb
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\bin\Release\Loyc.Utilities.xml
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+G:\projects\2.rgbd modeling\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+D:\Desktop\sweepable object modeling(11.28)\IBrushes\bin\Release\IBrushes.exe.config
+D:\Desktop\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.exe
+D:\Desktop\sweepable object modeling(11.28)\IBrushes\obj\Release\IBrushes.pdb
+D:\Desktop\Generation\IBrushes\bin\Release\IBrushes.exe.config
+D:\Desktop\Generation\IBrushes\obj\Release\IBrushes.exe
+D:\Desktop\Generation\IBrushes\obj\Release\IBrushes.pdb
+D:\Desktop\ObjectSnapping\IBrushes\bin\Release\IBrushes.exe.config
+D:\Desktop\ObjectSnapping\IBrushes\obj\Release\IBrushes.exe
+D:\Desktop\ObjectSnapping\IBrushes\obj\Release\IBrushes.pdb
+C:\Users\Dell\Desktop\ObjectSnapping\IBrushes\bin\Release\IBrushes.exe.config
+C:\Users\Dell\Desktop\ObjectSnapping\IBrushes\obj\Release\IBrushes.exe
+C:\Users\Dell\Desktop\ObjectSnapping\IBrushes\obj\Release\IBrushes.pdb
+E:\ObjectSnapping\IBrushes\bin\Release\IBrushes.exe.config
+E:\ObjectSnapping\IBrushes\obj\Release\IBrushes.exe
+E:\ObjectSnapping\IBrushes\obj\Release\IBrushes.pdb
+E:\ObjectSnapping\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\ObjectSnapping\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+E:\ObjectSnapping\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+E:\ObjectSnapping\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+E:\ObjectSnapping\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+E:\ObjectSnapping\IBrushes\bin\Release\IBrushes.exe
+E:\ObjectSnapping\IBrushes\bin\Release\IBrushes.pdb
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Collections.dll
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Essentials.dll
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Syntax.dll
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Utilities.dll
+E:\ObjectSnapping\IBrushes\bin\Release\Microsoft.Kinect.dll
+E:\ObjectSnapping\IBrushes\bin\Release\ZedGraph.dll
+E:\ObjectSnapping\IBrushes\bin\Release\Emgu.CV.UI.xml
+E:\ObjectSnapping\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+E:\ObjectSnapping\IBrushes\bin\Release\Emgu.CV.World.xml
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Collections.pdb
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Collections.xml
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Essentials.pdb
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Essentials.xml
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Syntax.pdb
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Syntax.xml
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Utilities.pdb
+E:\ObjectSnapping\IBrushes\bin\Release\Loyc.Utilities.xml
+E:\ObjectSnapping\IBrushes\bin\Release\Microsoft.Kinect.xml
+E:\ObjectSnapping\IBrushes\bin\Release\ZedGraph.xml
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\IBrushes.exe.config
+E:\ObjectSnapping\clean-code\IBrushes\obj\Release\IBrushes.exe
+E:\ObjectSnapping\clean-code\IBrushes\obj\Release\IBrushes.pdb
+E:\ObjectSnapping\clean-code\IBrushes\obj\Release\IBrushes.csprojResolveAssemblyReference.cache
+E:\ObjectSnapping\clean-code\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+E:\ObjectSnapping\clean-code\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+E:\ObjectSnapping\clean-code\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+E:\ObjectSnapping\clean-code\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\IBrushes.exe
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\IBrushes.pdb
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Collections.dll
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Essentials.dll
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Syntax.dll
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Utilities.dll
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Microsoft.Kinect.dll
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\ZedGraph.dll
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Emgu.CV.UI.xml
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Emgu.CV.UI.GL.xml
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Emgu.CV.World.xml
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Collections.pdb
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Collections.xml
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Essentials.pdb
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Essentials.xml
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Syntax.pdb
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Syntax.xml
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Utilities.pdb
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Loyc.Utilities.xml
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\Microsoft.Kinect.xml
+E:\ObjectSnapping\clean-code\IBrushes\bin\Release\ZedGraph.xml
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\IBrushes.exe.config
+D:\Desktop\deep-clean-code\IBrushes\obj\Release\IBrushes.exe
+D:\Desktop\deep-clean-code\IBrushes\obj\Release\IBrushes.pdb
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\IBrushes.exe
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\IBrushes.pdb
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Collections.dll
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Essentials.dll
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Syntax.dll
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Utilities.dll
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Microsoft.Kinect.dll
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Collections.pdb
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Collections.xml
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Essentials.pdb
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Essentials.xml
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Syntax.pdb
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Syntax.xml
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Utilities.pdb
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Loyc.Utilities.xml
+D:\Desktop\deep-clean-code\IBrushes\bin\Release\Microsoft.Kinect.xml
+D:\Desktop\deep-clean-code\IBrushes\obj\Release\SmartCanvas.FormAirBrush.resources
+D:\Desktop\deep-clean-code\IBrushes\obj\Release\IBrushes.Properties.Resources.resources
+D:\Desktop\deep-clean-code\IBrushes\obj\Release\SmartCanvas.SketchView.resources
+D:\Desktop\deep-clean-code\IBrushes\obj\Release\IBrushes.csproj.GenerateResource.Cache

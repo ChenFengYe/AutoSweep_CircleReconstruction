@@ -1,0 +1,5 @@
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\bin\x64\Release\IBrushes.exe.config
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\obj\x64\Release\SmartCanvas.FormAirBrush.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\obj\x64\Release\IBrushes.Properties.Resources.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\obj\x64\Release\SmartCanvas.SketchView.resources
+F:\projects\2.rgbd modeling\RGBD_to_point cloud\IBrushes\obj\x64\Release\IBrushes.csproj.GenerateResource.Cache

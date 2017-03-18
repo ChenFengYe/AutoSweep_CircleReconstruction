@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>LoycCore</id>
+    <version>1.0.0</version>
+    <title />
+    <authors>David Piepgrass</authors>
+    <owners>David Piepgrass</owners>
+    <projectUrl>http://core.loyc.net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A set of useful libraries for many kinds of .NET developers, starting with Loyc.Essentials, a library that "fills in the gaps" in the core of the .NET Base Class Library. LoycCore is especially focused on collections: classes, interfaces, adapters, and extension methods.
+
+Contributors are welcome: more unit tests, code reviews, and new features are desired, anything relatively small (under about 3000 lines of code) that fits the theme "things that should have been built into the .NET framework, but aren't".</description>
+    <summary>A set of useful libraries for many kinds of .NET developers, starting with Loyc.Essentials, a library that "fills in the gaps" in the core of the .NET Base Class Library. LoycCore is especially focused on collections: classes, interfaces, adapters, and extension methods. 
+    
+Contributors are welcome: more unit tests, code reviews, and new features are desired, anything relatively small (under about 3000 lines of code) that fits the theme "things that should have been built into the .NET framework, but aren't".</summary>
+    <releaseNotes>Initial NuGet package!</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <language />
+    <tags>Loyc Core Collections Extension-Methods Dictionary Trees AList BList DList VList Cache Sparse-List Hash-Trees Geometry Math Utilities Adapters Interfaces</tags>
+  </metadata>
+</package>

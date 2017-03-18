@@ -1,0 +1,1327 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+using MyGeometry;
+using System.IO;
+
+using Emgu.CV;
+using Emgu.CV.Structure;
+using Emgu.Util;
+using Emgu.CV.UI;
+using System.Timers;
+
+
+namespace IBrushes
+{
+	public partial class FormAirBrush : Form
+	{
+		public FormAirBrush()
+		{
+			InitializeComponent();
+
+			this.sketchView.Init();
+			this.SetModeButtons();
+		}
+
+		private List<ToolStripButton> modeButtons_ = new List<ToolStripButton>();
+		private void SetModeButtons()
+		{
+			this.modeButtons_.Add(this.toolStripButtonView);
+			this.modeButtons_.Add(this.toolStripButtonSketch);
+			this.modeButtons_.Add(this.toolStripButtonAnchorRoom);
+			this.modeButtons_.Add(this.toolStripButtonCollage2D);
+			this.modeButtons_.Add(this.toolStripButtonMove2D);
+			this.modeButtons_.Add(this.toolStripButtonShowSketch);
+			this.modeButtons_.Add(this.toolStripButtonsGeoProjection);
+			this.modeButtons_.Add(this.toolStripButtonCollage);
+			this.modeButtons_.Add(this.toolStripButtonPolyugon);
+			this.modeButtons_.Add(this.toolStripButtonWeathering);
+			this.modeButtons_.Add(this.toolStripButtonSpecifyCanvas);
+		}
+		public void SetMode(SketchView.EnumOperationMode mode)
+		{
+			this.sketchView.CurrentMode = mode;
+
+			foreach (ToolStripButton button in this.modeButtons_)
+				button.Checked = false;
+			this.sketchView.ContextMenuStrip = null;
+
+			switch (mode)
+			{
+				case SketchView.EnumOperationMode.Viewing:
+					this.toolStripButtonView.Checked = true;
+					break;
+				case SketchView.EnumOperationMode.Sketching:
+					this.toolStripButtonSketch.Checked = true;
+					break;
+				case SketchView.EnumOperationMode.SelectStroke:
+				case SketchView.EnumOperationMode.SelectSketchObject:
+				case SketchView.EnumOperationMode.CreatingRefGeometry:
+					{
+						if (mode == SketchView.EnumOperationMode.SelectStroke)
+							this.toolStripButtonAnchorRoom.Checked = true;
+						if (mode == SketchView.EnumOperationMode.SelectSketchObject)
+							this.toolStripButtonCollage2D.Checked = true;
+						this.sketchView.ContextMenuStrip = this.contextMenuStrip;
+					}
+					break;
+				case SketchView.EnumOperationMode.AssignNonAxisAlignedRefLine:
+					this.toolStripButtonWeathering.Checked = true;
+					break;
+				case SketchView.EnumOperationMode.Adjusting:
+					this.toolStripButtonMove2D.Checked = true;
+					break;
+				case SketchView.EnumOperationMode.Painting:
+					this.toolStripButtonShowSketch.Checked = true;
+					break;
+				case SketchView.EnumOperationMode.Editing:
+					if (this.sketchView.CurrImageRecord != null)
+					{
+						this.sketchView.CurrImageRecord.CreateHingeRotationalMetaphor();
+					}
+					this.toolStripButtonCollage.Checked = true;
+					break;
+				case SketchView.EnumOperationMode.DrawPolygon:
+					this.toolStripButtonPolyugon.Checked = true;
+					break;
+				case SketchView.EnumOperationMode.RotateSketchObjects:
+					if (this.sketchView.CurrImageRecord != null)
+					{
+						this.sketchView.CurrImageRecord.CreateRotationalMetaphor();
+					}
+					break;
+				case SketchView.EnumOperationMode.SpecifyDrawingCanvas:
+					toolStripButtonSpecifyCanvas.Checked = true;
+					break;
+			}
+			this.sketchView.Focus();
+			this.sketchView.Refresh();
+		}
+
+		private void ptToolStripMenuItem5pt_Click(object sender, EventArgs e)
+		{
+			SketchView.BrushSize = 5;
+		}
+
+		private void ptToolStripMenuItem10Pt_Click(object sender, EventArgs e)
+		{
+			SketchView.BrushSize = 10;
+		}
+
+		private void ptToolStripMenuItem15Pt_Click(object sender, EventArgs e)
+		{
+			SketchView.BrushSize = 15;
+		}
+
+		private void ptToolStripMenuItem20Pt_Click(object sender, EventArgs e)
+		{
+			SketchView.BrushSize = 20;
+		}
+
+		private void ptToolStripMenuItem40Pt_Click(object sender, EventArgs e)
+		{
+			SketchView.BrushSize = 40;
+		}
+
+		private void toolStripButtonShowCanvas_Click(object sender, EventArgs e)
+		{
+			this.sketchView.TurnOnOffTexture();
+			this.sketchView.Refresh();
+		}
+
+		private void toolStripButtonClear_Click(object sender, EventArgs e)
+		{
+			this.sketchView.Clear();
+			this.sketchView.Refresh();
+		}
+
+		private void imageFilesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// the canvas texture
+			OpenFileDialog d = new OpenFileDialog();
+			d.FileName = "";
+			d.Filter = "Image File (*.jpg;*jpeg;*.bmp;*.png)|*.jpg;*jpeg;*.bmp;*.png|All files (*.*)|*.*";
+			d.CheckFileExists = true;
+			d.Multiselect = true;
+			if (d.ShowDialog(this) == DialogResult.OK)
+			{
+				int idealSizeW = 800, idealSizeH = 600;
+
+				foreach (string file in d.FileNames)
+				{
+					Image<Bgr, byte> image = new Image<Bgr, byte>(file);
+					int w = image.Width, h = image.Height;
+
+					bool widthLarger = (float)w / h > (float)idealSizeW / idealSizeH;
+					int sourceSize = widthLarger ? w : h;
+					int targetSize = widthLarger ? idealSizeW : idealSizeH;
+
+					//	float scale = 1;
+
+					//	if (sourceSize > targetSize) scale = (float)targetSize / sourceSize;				// down sampling only
+					//	else if (sourceSize < 0.75 * targetSize) scale = (float)targetSize / sourceSize;		// ==b
+
+					//	this.sketchView.Width = (int)(w);
+					//	this.sketchView.Height = (int)(h);
+
+					Console.WriteLine("image resolution = (" + image.Width + "," + image.Height + ")");
+
+					this.Refresh();
+
+					this.sketchView.SetImage(image);
+
+					int lastIndex = file.LastIndexOf('\\');
+					string tabname = file.Substring(lastIndex + 1, file.Length - lastIndex - 1);
+					TabPage page = new TabPage(tabname);
+					page.Tag = this.sketchView.CurrImageRecord;
+					tabControl.TabPages.Add(page);
+					tabControl.SelectedTab = page;
+
+					// try load calibrating file
+					string camerafile = file.Substring(0, file.LastIndexOf('.')) + ".ca";
+					if (File.Exists(camerafile))
+					{
+						this.sketchView.LoadCalibrateElements(camerafile);
+						Console.WriteLine("loaded camera file");
+					}
+
+					// try load scene file
+					string sceneFile = file.Substring(0, file.LastIndexOf('.')) + ".txt";
+					if (File.Exists(sceneFile))
+					{
+						this.sketchView.LoadScene(sceneFile);
+						Console.WriteLine("loaded scene file");
+					}
+
+					// try load sketch file
+					string sketchFile = file.Substring(0, file.LastIndexOf('.')) + ".skt";
+					if (File.Exists(sketchFile))
+					{
+						this.sketchView.LoadSketch(sketchFile);
+						Console.WriteLine("loaded sketch file");
+					}
+
+					// try load canvas file
+					string canvas_file = file.Substring(0, file.LastIndexOf('.')) + ".canvas";
+					if (File.Exists(canvas_file))
+					{
+						this.sketchView.CurrImageRecord.ReadHostingPlanesFromFile(canvas_file);
+						Console.WriteLine("loaded canvas file");
+					}
+
+
+					// try load painting strokes file
+					string paint_file = file.Substring(0, file.LastIndexOf('.')) + ".paint";
+					if (File.Exists(paint_file))
+					{
+						this.sketchView.CurrImageRecord.ReadPaintingStrokes(paint_file);
+						Console.WriteLine("loaded painting file");
+					}
+					this.sketchView.Refresh();
+				}
+			}
+		}
+
+		private void meshFileToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.LoadMesh();
+		}
+
+		// private functions
+		private Mesh LoadMesh()
+		{
+			OpenFileDialog d = new OpenFileDialog();
+			d.FileName = "";
+			d.Filter = "Wavefront Object File (*.obj;*.off;*.ply)|*.obj;*.off;*.ply|All files (*.*)|*.*";
+			d.CheckFileExists = true;
+			DialogResult ret = d.ShowDialog(this);
+
+			if (ret == DialogResult.OK)
+			{
+				string fullPath = d.FileName;
+				char[] delimiters = { '.' };
+				string[] tokens = fullPath.Split(delimiters);
+				//string extension = fullPath.Substring(fullPath.Length - 3, 3);
+				string extension;
+				if (tokens.Length > 0)
+					extension = tokens[tokens.Length - 1];
+				else
+					extension = "obj";
+
+				string filename = Path.GetFileName(fullPath);
+
+				int index = fullPath.LastIndexOf('\\');
+				string objectName = fullPath.Substring(index + 1, fullPath.Length - index - 1);
+
+				// load mesh model
+				StreamReader sr = new StreamReader(fullPath);
+				Mesh m = new Mesh(sr, extension);
+				sr.Close();
+
+				// add new tabpage and mesh record
+				MeshRecord rec = new MeshRecord(m);
+				rec.Filename = fullPath;// filename;
+				rec.objName = objectName;
+
+
+				//		this.sketchView.BindMesh(rec);
+				this.sketchView.Refresh();
+
+				return m;
+			}
+
+			return null;
+		}
+
+		private void toolStripButtonView_Click(object sender, EventArgs e)
+		{
+			this.SetMode(SketchView.EnumOperationMode.Viewing);
+		}
+
+		private void toolStripButtonSketch_Click(object sender, EventArgs e)
+		{
+			this.SetMode(SketchView.EnumOperationMode.Sketching);
+		}
+
+		private void FormAirBrush_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Control == true && e.KeyCode == Keys.C)
+			{
+				this.sketchView.CopyScene();
+			}
+			else if (e.Control == true && e.KeyCode == Keys.V)
+			{
+				this.sketchView.PasteScene();
+			}
+			else
+				switch (e.KeyData)
+				{
+					case Keys.S:
+						this.sketchView.SetMode(SketchView.EnumOperationMode.Viewing);
+						break;
+					case Keys.C:
+
+						break;
+					case Keys.L:
+
+						break;
+					case Keys.D:
+
+						break;
+					case Keys.F1:
+						this.LoadMesh();
+						break;
+					case Keys.F2:
+
+						break;
+				}
+		}
+
+		private void toolStripButtonWeathering_Click(object sender, EventArgs e)
+		{
+			this.sketchView.SetMode(SketchView.EnumOperationMode.AssignNonAxisAlignedRefLine);
+			this.sketchView.Refresh();
+		}
+
+		private void toolStripButton2_Click(object sender, EventArgs e)
+		{
+			this.sketchView.SetMode(SketchView.EnumOperationMode.AssignRotatingHingleRelation);
+			this.sketchView.Refresh();
+		}
+
+		private void toolStripButton3_Click(object sender, EventArgs e)
+		{
+			this.sketchView.SetMode(SketchView.EnumOperationMode.AssignSlidingHingleRelation);
+			this.sketchView.Refresh();
+		}
+
+		private void toolStripButton4_Click(object sender, EventArgs e)
+		{
+			this.sketchView.CurrImageRecord.ShowRegressionLines =
+				!this.sketchView.CurrImageRecord.ShowRegressionLines;
+			this.sketchView.Refresh();
+		}
+
+		private void toolStripButtonCoplanar_Click(object sender, EventArgs e)
+		{
+			this.sketchView.SetMode(SketchView.EnumOperationMode.MoveSketchObjects);
+			this.sketchView.Refresh();
+		}
+
+		private void toolStripButtonRevertViewPoint_Click(object sender, EventArgs e)
+		{
+			this.sketchView.SetMode(SketchView.EnumOperationMode.EditConnectors);
+			this.sketchView.Refresh();
+		}
+
+		private void toolStripButtonAdjustCalibratingLines_Click(object sender, EventArgs e)
+		{
+			this.sketchView.Calibrate();
+			this.sketchView.Refresh();
+		}
+
+		private void toolStripButtonAnchorRoom_Click(object sender, EventArgs e)
+		{
+			this.SetMode(SketchView.EnumOperationMode.SelectStroke);
+			this.sketchView.Refresh();
+		}
+
+		private void toolStripButtonMove2D_Click(object sender, EventArgs e)
+		{
+			this.sketchView.SetMode(SketchView.EnumOperationMode.Adjusting);
+			this.sketchView.Refresh();
+		}
+
+		private void saveCalibatingLinesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog d = new SaveFileDialog();
+			d.FileName = "";
+			d.Filter = "Calibrating File (*.ca)|*.ca|All files (*.*)|*.*";
+			DialogResult ret = d.ShowDialog(this);
+
+			if (ret == DialogResult.OK)
+			{
+				this.sketchView.SaveCalibrateElements(d.FileName);
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void loadCalibatingLinesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog d = new OpenFileDialog();
+			d.FileName = "";
+			d.Filter = "Calibrating File (*.ca)|*.ca|All files (*.*)|*.*";
+			d.CheckFileExists = true;
+			DialogResult ret = d.ShowDialog(this);
+
+			if (ret == DialogResult.OK)
+			{
+				this.sketchView.LoadCalibrateElements(d.FileName);
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void toolStripButtonShowSketch_Click(object sender, EventArgs e)
+		{
+			this.SetMode(SketchView.EnumOperationMode.Painting);
+			this.sketchView.Refresh();
+		}
+
+		private void buttonCloseTab_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.RemoveImageRecord(this.sketchView.CurrImageRecord);
+			}
+			if (this.tabControl.SelectedTab != null)
+			{
+				this.tabControl.TabPages.Remove(this.tabControl.SelectedTab);
+			}
+			if (this.tabControl.SelectedTab != null)
+				this.sketchView.SetImageRecord((ImageRecord)this.tabControl.SelectedTab.Tag);
+			else
+				this.sketchView.Clear();
+		}
+
+		private void tabControl_Selected(object sender, TabControlEventArgs e)
+		{
+			if (tabControl.SelectedTab != null)
+			{
+				ImageRecord rec = (ImageRecord)tabControl.SelectedTab.Tag;
+				this.sketchView.SetImageRecord(rec);
+			}
+		}
+
+		private void toolStripButtonResetCamera_Click(object sender, EventArgs e)
+		{
+			this.sketchView.Reset();
+		}
+
+		private void toolStripButtonCollage_Click(object sender, EventArgs e)
+		{
+			toolStripButtonCollage.Checked = !toolStripButtonCollage.Checked;
+			this.SetMode(SketchView.EnumOperationMode.Editing);
+		}
+
+		private void toolStripButtonCollage2D_Click(object sender, EventArgs e)
+		{
+			this.SetMode(SketchView.EnumOperationMode.SelectSketchObject);
+			this.sketchView.Refresh();
+		}
+
+		private void sendFrontFToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.ReleaseFixSelection();
+				this.sketchView.Refresh();
+			}
+		}
+
+
+		private void sendBackSToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.SetHingleSketch();
+				this.sketchView.SetMode(SketchView.EnumOperationMode.AssignRotatingHingleRelation);
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void sendToBotBToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.SetReferenceDrawingCuboid();
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void saveSceneToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog d = new SaveFileDialog();
+			d.FileName = "";
+			d.Filter = "Scene File (*.txt)|*.txt|All files (*.*)|*.*";
+			DialogResult ret = d.ShowDialog(this);
+			if (ret == DialogResult.OK)
+			{
+				this.sketchView.SaveScene(d.FileName);
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void loadSceneToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog d = new OpenFileDialog();
+			d.FileName = "";
+			d.Filter = "Scene File (*.txt)|*.txt|All files (*.*)|*.*";
+			d.CheckFileExists = true;
+			DialogResult ret = d.ShowDialog(this);
+
+			if (ret == DialogResult.OK)
+			{
+				this.sketchView.LoadScene(d.FileName);
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void radioButtonContact_CheckedChanged(object sender, EventArgs e)
+		{
+			this.sketchView.CurrentRelationMode = EnumGeometricRelation.Contact;
+		}
+
+		private void radioButtonSupport_CheckedChanged(object sender, EventArgs e)
+		{
+			this.sketchView.CurrentRelationMode = EnumGeometricRelation.Support;
+		}
+
+		private void radioButtonAttach_CheckedChanged(object sender, EventArgs e)
+		{
+			this.sketchView.CurrentRelationMode = EnumGeometricRelation.Attach;
+		}
+
+		private void radioButtonNone_CheckedChanged(object sender, EventArgs e)
+		{
+			this.sketchView.CurrentRelationMode = EnumGeometricRelation.None;
+		}
+
+		private void toolStripButtonAssignRelation_Click(object sender, EventArgs e)
+		{
+			this.SetMode(SketchView.EnumOperationMode.RotateSketchObjects);
+		}
+
+		private void buttonOk_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void showTexturesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.showTexturesToolStripMenuItem.Checked = !this.showTexturesToolStripMenuItem.Checked;
+			if (this.showTexturesToolStripMenuItem.Checked)
+			{
+				this.showGeometryToolStripMenuItem.Checked = false;
+				this.showHostingPlaneToolStripMenuItem.Checked = false;
+				this.showCuboidToolStripMenuItem.Checked = false;
+			}
+			this.sketchView.TurnOnOffTexture();
+			this.sketchView.Refresh();
+		}
+
+		private void showSketchesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.showSketchesToolStripMenuItem.Checked = !this.showSketchesToolStripMenuItem.Checked;
+			this.sketchView.TurnOnOffSketch();
+			this.sketchView.Refresh();
+		}
+
+		private void showCalibratingStructureToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.showCalibratingStructureToolStripMenuItem.Checked = !this.showCalibratingStructureToolStripMenuItem.Checked;
+			this.sketchView.TurnOnOffShowCalibratingStructure();
+			this.sketchView.Refresh();
+		}
+
+		private void groupToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.GroupStrokes();
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void saveSketchGroupsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				SaveFileDialog d = new SaveFileDialog();
+				d.FileName = "";
+				d.Filter = "Sketch File (*.skt)|*.skt|All files (*.*)|*.*";
+				DialogResult ret = d.ShowDialog(this);
+				if (ret == DialogResult.OK)
+				{
+					this.sketchView.CurrImageRecord.SaveSketchObjects(d.FileName);
+					this.sketchView.Refresh();
+				}
+			}
+		}
+
+		private void loadSketchGroupsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				OpenFileDialog d = new OpenFileDialog();
+				d.FileName = "";
+				d.Filter = "Sketch File (*.skt)|*.skt|All files (*.*)|*.*";
+				d.CheckFileExists = true;
+				if (d.ShowDialog(this) == DialogResult.OK)
+				{
+					this.sketchView.CurrImageRecord.ReadSketchObjects(d.FileName);
+					this.sketchView.Refresh();
+				}
+			}
+		}
+
+		private void toolStripButtonsGeoProjection_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.ShowCandidatePlanes = !
+					this.sketchView.CurrImageRecord.ShowCandidatePlanes;
+				toolStripButtonsGeoProjection.Checked = this.sketchView.CurrImageRecord.ShowCandidatePlanes;
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void showGeometryToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.showGeometryToolStripMenuItem.Checked = !this.showGeometryToolStripMenuItem.Checked;
+			if (this.showGeometryToolStripMenuItem.Checked)
+			{
+				this.showTexturesToolStripMenuItem.Checked = false;
+				this.showHostingPlaneToolStripMenuItem.Checked = false;
+				this.showCuboidToolStripMenuItem.Checked = false;
+			}
+			this.sketchView.TurnOnOffShowGeometry();
+			this.sketchView.Refresh();
+		}
+
+		private void toolStripButtonEdit_Click(object sender, EventArgs e)
+		{
+			this.sketchView.CurrImageRecord.PlaneOptimization();
+			this.sketchView.SetMode(SketchView.EnumOperationMode.Viewing);
+			this.sketchView.Refresh();
+		}
+
+		private void cameraCornerAnchorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.sketchView.SwitchCameraAnchor();
+		}
+
+		private void toolStripButtonPolyugon_Click(object sender, EventArgs e)
+		{
+			this.SetMode(SketchView.EnumOperationMode.DividStroke);
+		}
+
+
+		private void trackBarOpacity_ValueChanged(object sender, EventArgs e)
+		{
+			if (this.sketchView != null && this.sketchView.CurrImageRecord != null)
+			{
+				SketchView.Opacity = (float)trackBarOpacity.Value / trackBarOpacity.Maximum;
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void earseTool_Click(object sender, EventArgs e)
+		{
+			this.SetMode(SketchView.EnumOperationMode.Erasing);
+		}
+
+		private void postOptimization_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.RenameFiles();
+				return;
+				this.sketchView.CurrImageRecord.ShowInitialPlanes =
+					!this.sketchView.CurrImageRecord.ShowInitialPlanes;
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void recomputeCandidatePlanesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+			}
+		}
+
+		private void saveHostingPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog d = new SaveFileDialog();
+			d.FileName = "";
+			d.Filter = "Canvas File (*.canvas;)|*.canvas;";
+			DialogResult ret = d.ShowDialog(this);
+
+			if (ret == DialogResult.OK)
+				if (this.sketchView.CurrImageRecord != null)
+				{
+					this.sketchView.CurrImageRecord.SaveHostingPlanesToFile(d.FileName);
+				}
+		}
+
+		private void saveUserSketchToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog d = new SaveFileDialog();
+			d.FileName = "";
+			d.Filter = "Obj File (*.obj;)|*.obj;";
+			DialogResult ret = d.ShowDialog(this);
+
+			if (ret == DialogResult.OK)
+			{
+				this.sketchView.CurrImageRecord.SaveUserSketches(d.FileName);
+			}
+		}
+
+		private void ambientColorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ColorDialog clrDlg = new ColorDialog();
+			if (clrDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				Color c = clrDlg.Color;
+				GLRenderer.matAmbient = new float[4] {
+					c.R / 255.0f, c.G / 255.0f, c.B / 255.0f, c.A / 255.0f
+				};
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void diffuseColorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ColorDialog clrDlg = new ColorDialog();
+			if (clrDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				Color c = clrDlg.Color;
+				GLRenderer.matDiffuse = new float[4] {
+					c.R / 255.0f, c.G / 255.0f, c.B / 255.0f, c.A / 255.0f
+				};
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void specularColorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ColorDialog clrDlg = new ColorDialog();
+			if (clrDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				Color c = clrDlg.Color;
+
+				GLRenderer.matSpecular = new float[4] {
+					c.R / 255.0f, c.G / 255.0f, c.B / 255.0f, c.A / 255.0f
+				};
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void brushColorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ColorDialog clrDlg = new ColorDialog();
+			clrDlg.Color = SketchView.ShadingColor;
+			if (clrDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				SketchView.ShadingColor = Color.FromArgb(
+					 clrDlg.Color.A,
+					 clrDlg.Color.R, clrDlg.Color.G, clrDlg.Color.B
+				);
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void trackBarShineness_ValueChanged(object sender, EventArgs e)
+		{
+			if (this.sketchView != null && this.sketchView.CurrImageRecord != null)
+			{
+				GLRenderer.shine[0] = (float)trackBarShineness.Value / trackBarShineness.Maximum * 20;
+				this.sketchView.CurrImageRecord.DrawTransparent = (trackBarShineness.Value == 0);
+				this.sketchView.Refresh();
+			}
+		}
+
+		//private void addLight_Click(object sender, EventArgs e)
+		//{
+		//	this.sketchView.SetMode(SketchView.EnumOperationMode.AddLight);
+		//	//this.sketchView.CurrImageRecord.AddLight();
+		//}
+
+		//private void lightColorToolStripMenuItem_Click(object sender, EventArgs e)
+		//{
+		//	ColorDialog clrDlg = new ColorDialog();
+		//	if (clrDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		//	{
+		//		Color c = clrDlg.Color;
+		//		this.sketchView.currLightColor = c;
+		//		this.sketchView.Refresh();
+		//	}
+		//}
+		private void ungroupToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.UnGroup();
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void saveHostingCuboidToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog d = new SaveFileDialog();
+			d.FileName = "";
+			d.Filter = "Obj File (*.obj;)|*.obj;";
+			DialogResult ret = d.ShowDialog(this);
+
+			if (ret == DialogResult.OK)
+			{
+				if (this.sketchView.CurrImageRecord != null)
+				{
+					this.sketchView.CurrImageRecord.SaveHostingCuboids(d.FileName);
+				}
+			}
+		}
+
+		private void pencilSketchToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.currSketchStyle =
+					ImageRecord.SketchStyleMode.PencilSketch;
+				this.Refresh();
+			}
+		}
+
+		private void originalSketchToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.currSketchStyle =
+					ImageRecord.SketchStyleMode.Original;
+				this.Refresh();
+			}
+		}
+
+		private void showStrokePolygonToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.showHostingPlaneToolStripMenuItem.Checked = !this.showHostingPlaneToolStripMenuItem.Checked;
+			if(this.showHostingPlaneToolStripMenuItem.Checked)
+			{
+				this.showCuboidToolStripMenuItem.Checked = false;
+				this.showGeometryToolStripMenuItem.Checked = false;
+			}
+			this.sketchView.TurnOnOffHostingPlane();
+			this.Refresh();
+		}
+
+		private void parallelToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.AssignParallel();
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void selectPolygon_Click(object sender, EventArgs e)
+		{
+			this.SetMode(SketchView.EnumOperationMode.SelectPolygonVertex);
+		}
+
+		private void savePolygonToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog d = new SaveFileDialog();
+			d.FileName = "";
+			d.Filter = "Obj File (*.obj;)|*.obj;";
+			DialogResult ret = d.ShowDialog(this);
+
+			if (ret == DialogResult.OK)
+			{
+				if (this.sketchView.CurrImageRecord != null)
+				{
+					this.sketchView.CurrImageRecord.SaveStrokPolygon(d.FileName);
+					this.sketchView.CurrImageRecord.SaveStrokeOffsetPolygons(d.FileName);
+					this.sketchView.CurrImageRecord.SaveCameraParamter(d.FileName);
+				}
+			}
+		}
+
+		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				SaveFileDialog d = new SaveFileDialog();
+				d.FileName = "";
+				d.Filter = "Sketch File (*.bskt)|*.bskt|All files (*.*)|*.*";
+				DialogResult ret = d.ShowDialog(this);
+				if (ret == DialogResult.OK)
+				{
+					this.sketchView.CurrImageRecord.SaveSketchObjectsBinary(d.FileName);
+					this.sketchView.Refresh();
+				}
+			}
+		}
+
+		private void loadSketchesBinaryToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				OpenFileDialog d = new OpenFileDialog();
+				d.FileName = "";
+				d.Filter = "Sketch File (*.bskt)|*.bskt|All files (*.*)|*.*";
+				d.CheckFileExists = true;
+				if (d.ShowDialog(this) == DialogResult.OK)
+				{
+					this.sketchView.CurrImageRecord.ReadSketchObjectsBinary(d.FileName);
+					this.sketchView.Refresh();
+				}
+			}
+		}
+
+		private void trackBarStrokeSize_ValueChanged(object sender, EventArgs e)
+		{
+			SketchView.StrokeSize = trackBarStrokeSize.Value;
+			this.sketchView.Refresh();
+		}
+
+
+		private void symmetryToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			
+		}
+
+		private void cylinderToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			
+		}
+
+		private void loadHostingPlanesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				OpenFileDialog d = new OpenFileDialog();
+				d.FileName = "";
+				d.Filter = "Canvas File (*.canvas)|*.canvas|All files (*.*)|*.*";
+				d.CheckFileExists = true;
+				if (d.ShowDialog(this) == DialogResult.OK)
+				{
+					this.sketchView.CurrImageRecord.ReadHostingPlanesFromFile(d.FileName);
+					this.sketchView.Refresh();
+				}
+			}
+		}
+
+		private void SaveCrtCam()
+		{
+			if (this.sketchView.CurrImageRecord == null) return;
+			SaveFileDialog d = new SaveFileDialog();
+			d.FileName = "";
+			d.Filter = "Exist Segmentation File (*.cam)|*.cam|All files (*.*)|*.*";
+			d.CheckFileExists = false;
+			DialogResult ret = d.ShowDialog(this);
+
+			if (ret == DialogResult.OK)
+			{
+				string fullPath = d.FileName;
+				string extension = fullPath.Substring(fullPath.Length - 4, 4);
+				string filename = Path.GetFileName(fullPath);
+
+
+				StreamWriter sw = new StreamWriter(fullPath);
+				if (extension.Equals(".cam"))
+					this.sketchView.CurrImageRecord.SaveTransformationMatrix(sw);
+				sw.Close();
+				this.sketchView.Refresh();
+			}
+		}
+		private void LoadCrtCam()
+		{
+			if (this.sketchView.CurrImageRecord == null) return;
+			OpenFileDialog d = new OpenFileDialog();
+			d.FileName = "";
+			d.Filter = "Exist Segmentation File (*.cam)|*.cam|All files (*.*)|*.*";
+			d.CheckFileExists = true;
+			DialogResult ret = d.ShowDialog(this);
+
+			if (ret == DialogResult.OK)
+			{
+				string fullPath = d.FileName;
+				string extension = fullPath.Substring(fullPath.Length - 4, 4);
+				string filename = Path.GetFileName(fullPath);
+
+				// load mesh model
+				StreamReader sr = new StreamReader(fullPath);
+				if (extension.Equals(".cam"))
+					this.sketchView.CurrImageRecord.LoadTransformationMatrix(sr);
+				sr.Close();
+				this.sketchView.Refresh();
+			}
+		}
+		private void saveViewpointToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.SaveCrtCam();
+		}
+
+		private void loadViewpointToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.LoadCrtCam();
+		}
+
+		private void enablePostOptimizationToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.UsePostOptim = !this.sketchView.CurrImageRecord.UsePostOptim;
+				enablePostOptimizationToolStripMenuItem.Checked = !this.sketchView.CurrImageRecord.UsePostOptim;
+			}
+		}
+
+		private void enableAutoGroupingToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.EnableAutoGrouping = !this.sketchView.CurrImageRecord.EnableAutoGrouping;
+				enableAutoGroupingToolStripMenuItem.Checked = !this.sketchView.CurrImageRecord.EnableAutoGrouping;
+			}
+		}
+
+		private void trackBarStrokeDecomposeThreshold_ValueChanged(object sender, EventArgs e)
+		{
+			SketchView.StrokeDecomposeThreshold = trackBarStrokeDecomposeThreshold.Value;
+			this.sketchView.Refresh();
+		}
+
+		private void connectorColorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ColorDialog clrDlg = new ColorDialog();
+			if (clrDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				SketchView.ConnectorColor = clrDlg.Color;
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void highlightColorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ColorDialog clrDlg = new ColorDialog();
+			if (clrDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				SketchView.HighlightColor = clrDlg.Color;
+				this.sketchView.Refresh();
+			}
+		}
+		private void hostingPlaneThickness_ValueChanged(object sender, EventArgs e)
+		{
+			SketchView.offset = hostingPlaneThickness.Value / 100.0;
+			if (this.sketchView != null && this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.ResetPolygonOffset();
+			}
+			this.sketchView.Refresh();
+		}
+
+		private void showCuboidToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.showCuboidToolStripMenuItem.Checked = !this.showCuboidToolStripMenuItem.Checked;
+			if(this.showCuboidToolStripMenuItem.Checked)
+			{
+				this.showGeometryToolStripMenuItem.Checked = false;
+				this.showHostingPlaneToolStripMenuItem.Checked = false;
+				this.showTexturesToolStripMenuItem.Checked = false;
+			}
+			this.sketchView.TurnOnOffCuboid();
+			this.sketchView.Refresh();
+		}
+
+		private void pencilColorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ColorDialog clrDlg = new ColorDialog();
+			if (clrDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				SketchView.PencilColor = clrDlg.Color;
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void showOutLineToolStripMenuItem1_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.ShowOutLines = !
+					this.sketchView.CurrImageRecord.ShowOutLines;
+				showOutLineToolStripMenuItem1.Checked = this.sketchView.CurrImageRecord.ShowOutLines;
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void showPencilSketchyStyleToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.ShowPencilOutLines = !
+					this.sketchView.CurrImageRecord.ShowPencilOutLines;
+				showSketchyOutlinesToolStripMenuItem.Checked = this.sketchView.CurrImageRecord.ShowPencilOutLines;
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void symmetryToolStripMenuItem_Click_1(object sender, EventArgs e)
+		{
+			if (this.sketchView != null && this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.AssignSymmetryCurve();
+			}
+		}
+
+		private void cylinderToolStripMenuItem1_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView != null && this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.AssignCylinder();
+			}
+		}
+
+		private void enableStrokeRectificationToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.EnableStrokeRectification = !this.sketchView.CurrImageRecord.EnableStrokeRectification;
+				enableStrokeRectificationToolStripMenuItem.Checked = !this.sketchView.CurrImageRecord.EnableStrokeRectification;
+			}
+		}
+
+		private void setCanvasDrawingTextureToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.SwitchCanvas();
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void toolStripButtonSpecifyCanvas_Click(object sender, EventArgs e)
+		{
+			this.SetMode(SketchView.EnumOperationMode.SpecifyDrawingCanvas);
+		}
+
+		private void paintColorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ColorDialog clrDlg = new ColorDialog();
+			clrDlg.Color = SketchView.PaintColor;
+			if (clrDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				SketchView.PaintColor = Color.FromArgb(
+					 clrDlg.Color.A,
+					 clrDlg.Color.R, clrDlg.Color.G, clrDlg.Color.B
+				);
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void autoCameraRotate_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView == null || this.sketchView.CurrImageRecord == null)
+				return;
+			this.rotTime.Enabled = !this.rotTime.Enabled;
+			this.rotTime.Interval = 10;
+			this.sketchView.CurrImageRecord.left_rotate_angle = double.Parse(this.leftRotAngle.Text)/180.0 * Math.PI;
+			this.sketchView.CurrImageRecord.right_rotate_angle = double.Parse(this.rightRotAngle.Text) / 180.0 * Math.PI;
+		//	this.sketchView.CurrImageRecord.rot_dir = 1;
+			if (this.rotTime.Enabled)
+			{
+				this.sketchView.CurrImageRecord.rotate_angle = 0.0;
+				this.rotTime.Start();
+			}
+			else
+				this.rotTime.Stop();
+			this.sketchView.Refresh();
+		}
+
+		private void rotTime_Tick(object sender, EventArgs e)
+		{
+			if (this.sketchView == null || this.sketchView.CurrImageRecord == null)
+				return;
+			this.sketchView.CurrImageRecord.AutoRotateCamera();
+			this.sketchView.Refresh();
+		}
+
+		private void angleAdjust_ValueChanged(object sender, EventArgs e)
+		{
+			if (this.sketchView == null || this.sketchView.CurrImageRecord == null)
+				return;
+			this.sketchView.CurrImageRecord.max_rotate_angle =
+				(double)this.angleAdjust.Value / 10.0 * Math.PI/2;
+		}
+
+		private void speedAdjust_ValuedChanged(object sender, EventArgs e)
+		{
+			if (this.sketchView == null || this.sketchView.CurrImageRecord == null)
+				return;
+<<<<<<< HEAD
+			this.sketchView.CurrImageRecord.rotate_speed =
+				(double)this.speedAdjust.Value / 300.0 * this.sketchView.CurrImageRecord.max_rotate_speed;
+=======
+			this.sketchView.CurrImageRecord.rotate_ratio_per_tick =
+				(double)this.speedAdjust.Value / this.speedAdjust.Maximum;
+>>>>>>> origin/youyi_0118_miscs_for_video
+		}
+
+		private void strokeColorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ColorDialog clrDlg = new ColorDialog();
+			clrDlg.Color = SketchView.StrokeColor;
+			if (clrDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				SketchView.StrokeColor = Color.FromArgb(
+					 clrDlg.Color.A,
+					 clrDlg.Color.R, clrDlg.Color.G, clrDlg.Color.B
+				);
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (this.tabControl.SelectedTab != null)
+			{
+				ImageRecord rec = (ImageRecord)this.tabControl.SelectedTab.Tag;
+				if (this.sketchView.ImageRecords.Contains(rec))
+					this.sketchView.CurrImageRecord = rec;
+			}
+			else
+			{
+				this.sketchView.CurrImageRecord = null;
+			}
+			this.sketchView.Focus();
+			this.sketchView.Refresh();
+		}
+
+		private void showPaintingToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.ShowPainting = !
+					this.sketchView.CurrImageRecord.ShowPainting;
+				showPaintingToolStripMenuItem.Checked = this.sketchView.CurrImageRecord.ShowPainting;
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void savePaintingStrokesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				SaveFileDialog d = new SaveFileDialog();
+				d.FileName = "";
+				d.Filter = "Painting File (*.paint)|*.paint|All files (*.*)|*.*";
+				DialogResult ret = d.ShowDialog(this);
+				if (ret == DialogResult.OK)
+				{
+					this.sketchView.CurrImageRecord.SavePaintingStrokes(d.FileName);
+					this.sketchView.Refresh();
+				}
+			}
+		}
+
+		private void loadPaintingStrokesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				OpenFileDialog d = new OpenFileDialog();
+				d.FileName = "";
+				d.Filter = "Sketch File (*.paint)|*.paint|All files (*.*)|*.*";
+				d.CheckFileExists = true;
+				if (d.ShowDialog(this) == DialogResult.OK)
+				{
+					this.sketchView.CurrImageRecord.ReadPaintingStrokes(d.FileName);
+					this.sketchView.Refresh();
+				}
+			}
+		}
+
+		private void deletePaintToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if(this.sketchView!=null&&this.sketchView.CurrImageRecord!=null)
+			{
+				this.sketchView.CurrImageRecord.RemovePaintFromSketch();
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void junctionSketchToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.SetHingleSketch();
+				this.sketchView.SetMode(SketchView.EnumOperationMode.AssignSlidingHingleRelation);
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void showRoomBoxToolStripMenuItem_Click_1(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.ShowRoomBox = !
+					this.sketchView.CurrImageRecord.ShowRoomBox;
+				showRoomBoxToolStripMenuItem.Checked = this.sketchView.CurrImageRecord.ShowRoomBox;
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void leftRotAngle_TextChanged(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.left_rotate_angle = double.Parse(leftRotAngle.Text) / 180 * Math.PI;
+				this.sketchView.Refresh();
+			}
+		}
+
+		private void rightRotAngle_TextChanged(object sender, EventArgs e)
+		{
+			if (this.sketchView.CurrImageRecord != null)
+			{
+				this.sketchView.CurrImageRecord.right_rotate_angle = double.Parse(rightRotAngle.Text) / 180 * Math.PI;
+				this.sketchView.Refresh();
+			}
+		}
+
+	}
+}
+
