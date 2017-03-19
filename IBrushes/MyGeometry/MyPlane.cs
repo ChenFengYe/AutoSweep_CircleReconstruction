@@ -154,7 +154,7 @@ namespace MyGeometry
                 x = new MyVector3(1, 0, 0);
             MyVector3 y = normal.Cross(x).Normalize();
             CoordinateFrame frame = new CoordinateFrame(point, x, y, normal);
-            double s = 0.02 * RGBDBuilder.SceneDiagnal;
+            double s = 0.02;
             MyVector3 v1 = frame.GetPointLocalCoord(new MyVector3(s, s, 0));
             MyVector3 v2 = frame.GetPointLocalCoord(new MyVector3(-s, s, 0));
             MyVector3 v3 = frame.GetPointLocalCoord(new MyVector3(-s, -s, 0));

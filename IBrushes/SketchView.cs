@@ -35,7 +35,7 @@ namespace SmartCanvas
 
         public enum EnumOperationMode
         {
-            Viewing, NONE, Choosing
+            Viewing, NONE
         };
 
         // brush attributes
@@ -67,28 +67,22 @@ namespace SmartCanvas
 
         // sketching
         private const float brushPointSpace = 4;
-       
+
         private List<Quad3D> candidateQuads;
         private Quad3D groundQuad;
 
         // member, for image rendering
-        public List<CanvasEngine> CanvasEngines = new List<CanvasEngine>();
         private CanvasEngine currCanvasEngine;
         public CanvasEngine CurrCanvasEngine
         {
             get { return currCanvasEngine; }
             set { currCanvasEngine = value; }
         }
-        public void RemoveImageRecord(CanvasEngine rec)
-        {
-            rec.Clear();
-            this.CanvasEngines.Remove(rec);
-        }
 
         // for 3d rendering
         private EnumOperationMode currentMode;
         public EnumOperationMode CurrentMode { get { return this.currentMode; } set { this.currentMode = value; } }
-       
+
         private MyVector3 lightPosition;
         private double scaleRatio;
 
@@ -129,7 +123,7 @@ namespace SmartCanvas
             this.Refresh();
         }
         public bool TurnOnSketchOverlay { get; set; }
-    
+
 
         public void Init()
         {
@@ -137,20 +131,15 @@ namespace SmartCanvas
             this.prevMousePosition = new MyVector2();			// prev mouse pos
             this.mouseDownPosition = new MyVector2();			// mouse down pos
             this.currMousePosition = new MyVector2();			// curr mouse pos
-            this.candidateQuads = new List<Quad3D>();			// create candidate quad container
-            this.CanvasEngines = new List<CanvasEngine>();		// new the image records
 
             // initialize textures, airbrushes, and parameters
             this.LoadTextures();								// load canvas, brush textures
 
 
             // 3d entities
-            this.eyePos = new MyVector3(0, 0.1, 1);				// eye (camera) position
+            //this.eyePos = new MyVector3(0, 0.1, 1);				// eye (camera) position
+            this.eyePos = new MyVector3(0, 0, -0.5);				// eye (camera) position
             this.lightPosition = new MyVector3(5, 5, 5);			// light position
-            this.groundQuad = Quad3D.UnitQuad();				// create ground quad(Canvas3)
-            this.groundQuad.Transform(MyMatrix4d.ScalingMatrix(100, 100, 100));
-            this.groundQuad.Transform(MyMatrix4d.RotationMatrix(new MyVector3(1, 0, 0), 1.0 / 180 * Math.PI));
-            this.groundQuad.Transform(MyMatrix4d.TranslationMatrix(new MyVector3(0, -1, 0)));
 
 
             // util
@@ -170,6 +159,7 @@ namespace SmartCanvas
         }
         public void CreateCanvasEngine(Image<Bgr, byte> image)
         {
+
             Image<Gray, byte> gray = image.Convert<Gray, byte>();
             this.CreateTexture(image, out SketchView.canvasTextureId);
 
@@ -177,7 +167,6 @@ namespace SmartCanvas
 
             CanvasEngine engine = new CanvasEngine(this, image, gray, canvasTextureId, sketchTextureId);
             this.currCanvasEngine = engine;
-            this.CanvasEngines.Add(engine);
 
             //ImageViewer iw = new ImageViewer(image, "hello");
             //iw.Show();
@@ -327,13 +316,6 @@ namespace SmartCanvas
                         }
                     }
                     break;
-                case EnumOperationMode.Choosing:
-                    if (this.currCanvasEngine != null)
-                    {
-                        this.currCanvasEngine.ChoosingMouseDown(this.mouseDownPosition);
-                    }
-                    break;
-             
             }
         }
         protected override void OnMouseMove(System.Windows.Forms.MouseEventArgs e)
@@ -356,20 +338,6 @@ namespace SmartCanvas
                         }
                     }
                     break;
-            
-                case EnumOperationMode.Choosing:
-                    {
-                        if (this.currCanvasEngine != null)
-                        {
-                            if (this.isMouseDown)
-                            {
-                                this.currCanvasEngine.ChoosingMouseMove(currMousePosition);
-                                this.Refresh();
-                            }
-                        }
-                    }
-                    break;        
-
             }
 
         }
@@ -389,18 +357,6 @@ namespace SmartCanvas
                             if (this.currMousePosition == mouseDownPosition) break;
 
                             this.currCanvasEngine.ViewingMouseUp();
-
-                            this.Refresh();
-                        }
-                    }
-                    break;
-                case EnumOperationMode.Choosing:
-                    {
-                        if (this.currCanvasEngine != null)
-                        {
-                            if (this.currMousePosition == mouseDownPosition) break;
-
-                            this.currCanvasEngine.ChoosingMouseUp(currMousePosition);
 
                             this.Refresh();
                         }
@@ -464,28 +420,13 @@ namespace SmartCanvas
         {
             switch (e.KeyData)
             {
-                case Keys.Space:
-                    {
-                        if (this.currCanvasEngine != null)
-                        {
-                            SketchView.EnableDebugMode = false;
-                            this.Refresh();
-                        }
-                    }
-                    break;
+
                 case Keys.R:
                     {
                         if (this.currCanvasEngine != null)
                         {
                             this.Reset();
                         }
-                    }
-                    break;
-                case Keys.B:
-                    if (this.currCanvasEngine != null)
-                    {
-                        //		this.currCanvasEngine.ShowCanvas = true;
-                        this.Refresh();
                     }
                     break;
             }

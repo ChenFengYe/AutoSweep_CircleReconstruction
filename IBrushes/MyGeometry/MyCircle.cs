@@ -79,14 +79,14 @@ namespace MyGeometry
 			circlePoints3d = cp;
 			ComputeArea();
 		}
-		public MyCircle (MyVector3 c, double r, MyPlane p)
+		public MyCircle (MyVector3 c, double r, MyPlane p, int sample = 100)
 		{
 			center = c;
 			radius = r;
 			normal = p.Normal();
 			belongPlane = p;
 			ComputeArea();
-			SampleCirclePoints3d(c, p.Normal(), r, 100);
+            SampleCirclePoints3d(c, p.Normal(), r, sample);
 		}
 		public MyCircle (MyVector3 c, double r, MyPlane p, List<MyVector3> cp)
 		{
@@ -281,5 +281,19 @@ namespace MyGeometry
 			GL.End();
 			GL.Enable(EnableCap.Lighting);
 		}
+        public void DrawCapped()
+        {
+            GL.Disable(EnableCap.Lighting);
+            GL.LineWidth(1.5f);
+            GL.Color3(Color.Blue.R, Color.Blue.G, Color.Blue.B);
+            GL.Begin(PrimitiveType.Lines);
+            foreach (MyVector3 vert in circlePoints3d)
+            {
+                GL.Vertex3(center.ToArray());
+                GL.Vertex3(vert.ToArray());
+            }
+            GL.End();
+            GL.Enable(EnableCap.Lighting);
+        }
 	}
 }

@@ -41,27 +41,37 @@ namespace SmartCanvas
         double offset = 0;                                              // Scale between 2D and 3D
 
         // Optima Param
-        private List<MyVector2> CirclePoints_2d = new List<MyVector2>();// The Circle Sample Points projected on the screem
+        private List<MyVector2> CirclePoints_2d = new List<MyVector2>();// The Circle Sample Points projected on the screen
         List<List<double>> DistanceMap = new List<List<double>>();      // Distance Map
-        List<int> CorMap = new List<int>();                             // The correspndence of the BoundaryPoints and CirclePoints
+        List<int> CorMap = new List<int>();                             // The correspondence of the BoundaryPoints and CirclePoints
         int Inter_Num = -1;                                             // The interaction time of optima
-        int Inter_DMap = 10;                                            // While this time Update DistanceMap
+        int Inter_DMap = 1;                                             // While this time Update DistanceMap
         MyVector2 center_xy = new MyVector2();
         double center_z = 0;
         public void EstimatePlane()
         {
-            mark = GetMarkImgae(this.rgbdBuilder.CurrFrame().Image);
+            mark = GetMarkImgae(this.Canvas);
             boundaryPoints_2d = GetBoundaryPoints(mark);
-            DistanceMap = BuildDistanceMap(mark.Rows, mark.Cols, boundaryPoints_2d);
+            //DistanceMap = BuildDistanceMap(mark.Rows, mark.Cols, boundaryPoints_2d);
             drawProjectedPoint = true;
 
             // Init Optima Params
-            center_z = 0.05;
+            center_z = 1.25;
             center_xy = GetMarkCenter(boundaryPoints_2d, center_z);
-            double[] bndl = new double[] { -1, -1, -1, 0.0001 };
-            double[] x = new double[] { 0, -0.5, -0.5, 0.02 };
-            double[] bndu = new double[] { 1, 0.0001, 0.0001, 0.1 };
+            //center_xy = GetMarkCenter2dPixel(boundaryPoints_2d, center_z);
+
+
+            //double[] bndl = new double[] { -1, -1, -1, 0.02, -5, -5, 0 };
+            //double[] x = new double[] { 0, -0.707, -0.707, 0.5, 0, 0, 1 }; //add center
+            //double[] bndu = new double[] { 1, 1, 1, 5, 5, 5, 20 };
+
+            double[] bndl = new double[] { -1, -1, -1, 0.02 };
+            double[] x = new double[] { 0, -0.707, -0.707, 0.5 }; //add center
+            double[] bndu = new double[] { 1, 1, 1, 5 };
+
+            //double[] scale = new double[] { 1, 1, 1, 1, 10, 10, 10 };
             int paramsNum = 4;
+            int funNum =2;
             double diffstep = 0.00001;
             double epsg = 0.000000000001;
             double epsf = 0;
@@ -70,20 +80,34 @@ namespace SmartCanvas
             alglib.minlmstate state;
             alglib.minlmreport rep;
 
+            //set timer
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+            stopwatch.Start();
+
             // Do the optima
-            alglib.minlmcreatev(paramsNum, x, diffstep, out state);
+            alglib.minlmcreatev(funNum, x, diffstep, out state);
             alglib.minlmsetbc(state, bndl, bndu);
             alglib.minlmsetcond(state, epsg, epsf, epsx, maxits);
+            //alglib.minlmsetscale(state, scale);
             alglib.minlmoptimize(state, function_project, null, null);
             alglib.minlmresults(state, out x, out rep);
 
+
+            stopwatch.Stop();
+            Console.WriteLine("Stop Type: {0}, Total time: {1}s", rep.terminationtype, stopwatch.ElapsedMilliseconds / 1000.0);
+
             // Update Circle
+            //MyVector3 center = new MyVector3(x[4], x[5], x[6]);
             MyVector3 center = new MyVector3(center_xy.x, center_xy.y, center_z);
+
+
             MyVector3 normal = new MyVector3(x[0], x[1], x[2]); normal.Normalize();
             double radius = x[3];
 
             topCircle = new MyCircle(center, radius, new MyPlane(center, normal));
             CirclePoints_2d = GetProjectionPoints_2D(topCircle.CirclePoints);
+
+            this.view.Refresh();
         }
 
         private void function_project(double[] x, double[] fi, object obj)
@@ -91,9 +115,11 @@ namespace SmartCanvas
             // Step 1: Init Params
             Inter_Num++;
             MyVector3 center = new MyVector3(center_xy.x, center_xy.y, center_z);
+            //MyVector3 center = new MyVector3(x[4], x[5], x[6]);
+
             MyVector3 normal = new MyVector3(x[0], x[1], x[2]); normal.Normalize();
             double radius = x[3];
-            MyCircle myC = new MyCircle(center, radius, new MyPlane(center, normal));
+            MyCircle myC = new MyCircle(center, radius, new MyPlane(center, normal), this.boundaryPoints_2d.Count());
 
             // Step 2: Do projection
             CirclePoints_2d = GetProjectionPoints_2D(myC.CirclePoints);
@@ -109,8 +135,9 @@ namespace SmartCanvas
             {
                 //------------------------------------------------------------------------------------
                 // Cor Map
-                //int corIndex = CorMap[i];
-                //double dist = Math.Pow((CirclePoints_2d[i] - boundaryPoints_2d[corIndex]).Length(), 2);
+                int corIndex = CorMap[i];
+                double dist = Math.Pow((CirclePoints_2d[i] - boundaryPoints_2d[corIndex]).Length(), 2);
+
                 //------------------------------------------------------------------------------------
                 // Distance Map
                 //int i_x = (int)Math.Round(CirclePoints_2d[i].x);
@@ -121,18 +148,24 @@ namespace SmartCanvas
                 //i_y = Math.Max(0, i_y);
                 //double dist = DistanceMap[i_y][i_x];
                 //------------------------------------------------------------------------------------
-                double dist = double.MaxValue;
-                for (int j = 0; j < boundaryPoints_2d.Count; j++)
-                {
-                    dist = Math.Min(dist, Math.Pow((CirclePoints_2d[i] - boundaryPoints_2d[j]).Length(), 2));
-                }
+                //double dist = double.MaxValue;
+                //for (int j = 0; j < boundaryPoints_2d.Count; j++)
+                //{
+                //    dist = Math.Min(dist, Math.Pow((CirclePoints_2d[i] - boundaryPoints_2d[j]).Length(), 2));
+                //}
+
+
                 dist_all += dist;
                 //dist_max = Math.Max(dist, dist_max);
             }
 
             // Set Cost function
             fi[0] = dist_all;
-            //fi[1] = dist_max;
+
+            //center 3d match 2d
+            //double centerdis = (this.Compute2D(center) - center_xy).SquareLength();
+            //fi[1] = centerdis;
+            fi[1] = normal.SquareLength() - 1;
 
             System.Console.WriteLine("{0}|| N: {1},{2},{3} r: {4} cost:{5}",
                 Inter_Num, x[0], x[1], x[2], x[3], dist_all);
@@ -153,6 +186,19 @@ namespace SmartCanvas
                 c += bPoints[i];
             }
             c = (c / bPoints.Count - pic_c) * offset;
+            return c;
+        }
+
+        private MyVector2 GetMarkCenter2dPixel(List<MyVector2> bPoints, double CircleDistance)
+        {
+            offset = 1.0 / (Compute2D(new MyVector3(1, 0, CircleDistance)) - Compute2D(new MyVector3(0, 0, CircleDistance))).x;
+            MyVector2 pic_c = Compute2D(new MyVector3(0, 0, CircleDistance));
+            MyVector2 c = new MyVector2(0, 0);
+            for (int i = 0; i < bPoints.Count; i++)
+            {
+                c += bPoints[i];
+            }
+            c = c / bPoints.Count;
             return c;
         }
 

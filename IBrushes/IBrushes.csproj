@@ -225,7 +225,6 @@
     <Compile Include="NewRansac\GraphClass.cs" />
     <Compile Include="NewRansac\pointToPlaneClustering.cs" />
     <Compile Include="reconstruction.cs" />
-    <Compile Include="RGBDBuilder.cs" />
     <Compile Include="Triangulation\CLine.cs" />
     <Compile Include="Triangulation\CPolygon.cs" />
     <Compile Include="Triangulation\CPolygonShape.cs" />
