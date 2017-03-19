@@ -43,6 +43,7 @@ namespace SmartCanvas
         // Optima Param
         private List<MyVector2> CirclePoints_2d = new List<MyVector2>();// The Circle Sample Points projected on the screen
         List<List<double>> DistanceMap = new List<List<double>>();      // Distance Map
+        double[,] DisMap;                                               // An array for distance map
         List<int> CorMap = new List<int>();                             // The correspondence of the BoundaryPoints and CirclePoints
         int Inter_Num = -1;                                             // The interaction time of optima
         int Inter_DMap = 1;                                             // While this time Update DistanceMap
@@ -51,9 +52,10 @@ namespace SmartCanvas
         public void EstimatePlane()
         {
             mark = GetMarkImgae(this.Canvas);
+            DisMap = new double[mark.Height, mark.Width];
             boundaryPoints_2d = GetBoundaryPoints(mark);
-            DistanceMap = BuildDistanceMap(mark.Rows, mark.Cols, boundaryPoints_2d);
-            drawProjectedPoint = true;
+            //DistanceMap = BuildDistanceMap(mark.Rows, mark.Cols, boundaryPoints_2d);
+            //drawProjectedPoint = true;
 
             // Init Optima Params
             center_z = 1.25;
@@ -90,6 +92,7 @@ namespace SmartCanvas
             alglib.minlmstate state;
             alglib.minlmreport rep;
 
+
             //set timer
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
@@ -111,25 +114,15 @@ namespace SmartCanvas
             MyVector3 center = new MyVector3(center_xy.x, center_xy.y, center_z);
 
 
-            MyVector3 normal = new MyVector3(FromRotationToNormal(x[0], x[1], x[2])); normal.Normalize();
+            MyVector3 normal = new MyVector3(FromRotationToNormal(x[0], x[1], x[2])); normal = normal.Normalize();
             double radius = x[3];
 
             topCircle = new MyCircle(center, radius, new MyPlane(center, normal));
             CirclePoints_2d = GetProjectionPoints_2D(topCircle.CirclePoints);
 
+            // ReOptimize();
             this.view.Refresh();
         }
-
-        private MyVector3 FromRotationToNormal(double thetaX, double thetaY, double thetaZ)
-        {
-            MyMatrix4d RotationX = MyMatrix4d.RotationMatrix(new MyVector3(1, 0, 0), thetaX * Math.PI);
-            MyMatrix4d RotationY = MyMatrix4d.RotationMatrix(new MyVector3(0, 1, 0), thetaY * Math.PI);
-            MyMatrix4d RotationZ = MyMatrix4d.RotationMatrix(new MyVector3(0, 0, 1), thetaZ * Math.PI);
-            MyVector3 normal_init = new MyVector3(0,-1,0);
-            MyVector3 normal_cur = (RotationZ * RotationY * RotationX * normal_init.ToMyVector4()).XYZ();
-            return normal_cur.Normalize();
-        }
-
         private void function_project(double[] x, double[] fi, object obj)
         {
             // Step 1: Init Params
@@ -137,7 +130,7 @@ namespace SmartCanvas
             MyVector3 center = new MyVector3(center_xy.x, center_xy.y, center_z);
             //MyVector3 center = new MyVector3(x[4], x[5], x[6]);
 
-            MyVector3 normal = new MyVector3(FromRotationToNormal(x[0], x[1], x[2])); normal.Normalize();
+            MyVector3 normal = new MyVector3(FromRotationToNormal(x[0], x[1], x[2])); normal = normal.Normalize();
 
             double radius = x[3];
             MyCircle myC = new MyCircle(center, radius, new MyPlane(center, normal), this.boundaryPoints_2d.Count());
@@ -155,9 +148,9 @@ namespace SmartCanvas
             for (int i = 0; i < CirclePoints_2d.Count; i++)
             {
                 //------------------------------------------------------------------------------------
-                // Cor Map
+                //// Cor Map
                 //int corIndex = CorMap[i];
-                //double dist = Math.Pow((CirclePoints_2d[i] - boundaryPoints_2d[corIndex]).Length(), 2);
+                //double dist1 = (CirclePoints_2d[i] - boundaryPoints_2d[corIndex]).SquareLength();
 
                 //------------------------------------------------------------------------------------
                 // Distance Map
@@ -167,21 +160,23 @@ namespace SmartCanvas
                 //i_x = Math.Max(0, i_x);
                 //i_y = Math.Min(i_y, mark.Rows - 1);
                 //i_y = Math.Max(0, i_y);
-                //double dist = DistanceMap[i_y][i_x];
+                ////double dist2 = DistanceMap[i_y][i_x];
 
                 //------------------------------------------------------------------------------------
                 // Distance Interpolation from distance map
-                double dist = this.InterpolateDistanceWithDisMap(CirclePoints_2d[i]);
-
-
+                //double dist2 = this.InterpolateDistanceWithDisMap(CirclePoints_2d[i]);
 
                 //------------------------------------------------------------------------------------
-                //double dist = double.MaxValue;
-                //for (int j = 0; j < boundaryPoints_2d.Count; j++)
-                //{
-                //    dist = Math.Min(dist, Math.Pow((CirclePoints_2d[i] - boundaryPoints_2d[j]).Length(), 2));
-                //}
+                ////Do not use distance map, not accurate enough!
+                double dist = double.MaxValue;
+                for (int j = 0; j < boundaryPoints_2d.Count; j++)
+                {
+                    dist = Math.Min(dist, (CirclePoints_2d[i] - boundaryPoints_2d[j]).SquareLength());
+                }
 
+
+                //Console.WriteLine("2: {0}", Math.Abs(dist2 - dist));
+                //Console.WriteLine("1: {0}", Math.Abs(dist1 - dist));
 
                 dist_all += dist;
                 //dist_max = Math.Max(dist, dist_max);
@@ -195,10 +190,94 @@ namespace SmartCanvas
             //fi[1] = centerdis;
             fi[1] = normal.SquareLength() - 1;
 
-            System.Console.WriteLine("{0}|| N: {1},{2},{3} r: {4} cost:{5}",
-                Inter_Num, x[0], x[1], x[2], x[3], dist_all);
+            if (Inter_Num % 50 == 0)
+                System.Console.WriteLine("{0}|| N: {1},{2},{3} r: {4} cost:{5}",
+                    Inter_Num, x[0], x[1], x[2], x[3], dist_all);
+
+            // System.Console.WriteLine("{0}",Inter_Num);
         }
 
+        public void ReOptimize()
+        {
+            double[] bndl = new double[] { -1, -1, -1, 0.02, -5, -5, 0 };
+            double[] x = new double[] { topCircle.Normal.x, topCircle.Normal.y, topCircle.Normal.z, topCircle.Radius, topCircle.Center.x, topCircle.Center.y, topCircle.Center.z }; //add center
+            double[] bndu = new double[] { 1, 1, 1, 5, 5, 5, 20 };
+
+            int paramsNum = 7;
+            int funNum = 2;
+
+            double diffstep = 0.00001;
+            double epsg = 0.000000000001;
+            double epsf = 0;
+            double epsx = 0;
+            int maxits = 0;
+            alglib.minlmstate state;
+            alglib.minlmreport rep;
+
+            //set timer
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+            stopwatch.Start();
+
+            // Do the optima
+            alglib.minlmcreatev(funNum, x, diffstep, out state);
+            alglib.minlmsetbc(state, bndl, bndu);
+            alglib.minlmsetcond(state, epsg, epsf, epsx, maxits);
+            alglib.minlmoptimize(state, function_project2, null, null);
+            alglib.minlmresults(state, out x, out rep);
+            stopwatch.Stop();
+            Console.WriteLine("Stop Type: {0}, Total time: {1}s", rep.terminationtype, stopwatch.ElapsedMilliseconds / 1000.0);
+
+            // Update Circle
+            MyVector3 center = new MyVector3(x[4], x[5], x[6]);
+            MyVector3 normal = new MyVector3(FromRotationToNormal(x[0], x[1], x[2])); normal = normal.Normalize();
+            double radius = x[3];
+
+            topCircle = new MyCircle(center, radius, new MyPlane(center, normal));
+            CirclePoints_2d = GetProjectionPoints_2D(topCircle.CirclePoints);
+            this.view.Refresh();
+        }
+        private void function_withcenter(double[] x, double[] fi, object obj)
+        {
+            Inter_Num++;
+            MyVector3 center = new MyVector3(x[4], x[5], x[6]);
+            MyVector3 normal = new MyVector3(FromRotationToNormal(x[0], x[1], x[2])); normal = normal.Normalize();
+
+            double radius = x[3];
+            MyCircle myC = new MyCircle(center, radius, new MyPlane(center, normal), this.boundaryPoints_2d.Count());
+
+            CirclePoints_2d = GetProjectionPoints_2D(myC.CirclePoints);
+            double dist_all = 0;
+            for (int i = 0; i < CirclePoints_2d.Count; i++)
+            {
+                double dist = double.MaxValue;
+                for (int j = 0; j < boundaryPoints_2d.Count; j++)
+                {
+                    dist = Math.Min(dist, (CirclePoints_2d[i] - boundaryPoints_2d[j]).SquareLength());
+                }
+                dist_all += dist;
+            }
+
+            // Set Cost function
+            fi[0] = dist_all;
+            fi[1] = normal.SquareLength() - 1;
+
+            if (Inter_Num % 50 == 0)
+                System.Console.WriteLine("{0}|| N: {1},{2},{3} r: {4} cost:{5}",
+                    Inter_Num, x[0], x[1], x[2], x[3], dist_all);
+        }
+
+
+
+
+        private MyVector3 FromRotationToNormal(double thetaX, double thetaY, double thetaZ)
+        {
+            MyMatrix4d RotationX = MyMatrix4d.RotationMatrix(new MyVector3(1, 0, 0), thetaX * Math.PI);
+            MyMatrix4d RotationY = MyMatrix4d.RotationMatrix(new MyVector3(0, 1, 0), thetaY * Math.PI);
+            MyMatrix4d RotationZ = MyMatrix4d.RotationMatrix(new MyVector3(0, 0, 1), thetaZ * Math.PI);
+            MyVector3 normal_init = new MyVector3(0, -1, 0);
+            MyVector3 normal_cur = (RotationZ * RotationY * RotationX * normal_init.ToMyVector4()).XYZ();
+            return normal_cur.Normalize();
+        }
         private double GetOtherNormalParams(double n0, double n1)
         {
             return Math.Sqrt(1 - n0 * n0 - n1 * n1);
@@ -232,6 +311,9 @@ namespace SmartCanvas
 
         private List<List<double>> BuildDistanceMap(int rows, int cols, List<MyVector2> BoundaryPoints)
         {
+
+            Image<Gray, byte> disimg = new Image<Gray, byte>(mark.Width, mark.Height, new Gray(0));
+
             List<List<double>> Dmap = new List<List<double>>();
             for (int i = 0; i < rows; i++)
             {
@@ -241,12 +323,15 @@ namespace SmartCanvas
                     double dist = double.MaxValue;
                     for (int k = 0; k < BoundaryPoints.Count; k++)
                     {
-                        dist = Math.Min(dist, (new MyVector2(j, i) - BoundaryPoints[k]).Length());
+                        dist = Math.Min(dist, (new MyVector2(j, i) - BoundaryPoints[k]).SquareLength());
                     }
                     rowDmap.Add(dist);
+                    disimg[i, j] = new Gray(dist);
+                    this.DisMap[i, j] = dist;
                 }
                 Dmap.Add(rowDmap);
             }
+            new ImageViewer(disimg, "dis map").Show();
             return Dmap;
         }
 
@@ -276,7 +361,7 @@ namespace SmartCanvas
             double cannyThreshold = 60;
             double cannyThresholdLinking = 100;
             Image<Gray, Byte> cannyimg = markImg.Canny(cannyThreshold, cannyThresholdLinking);
-            new ImageViewer(cannyimg, "boundary").Show();
+            //new ImageViewer(cannyimg, "boundary").Show();
             double backGround_threshold = 50;
             List<MyVector2> b_points = new List<MyVector2>();
             for (int i = 0; i < cannyimg.Height; i++)
@@ -328,21 +413,22 @@ namespace SmartCanvas
 
             lowerx = Math.Min(lowerx, mark.Cols - 1);
             lowerx = Math.Max(0, lowerx);
-            lowery = Math.Min(lowery, mark.Rows - 1);
-            lowery = Math.Max(0, lowery);
-
             upperx = Math.Min(upperx, mark.Cols - 1);
             upperx = Math.Max(0, upperx);
+
+            lowery = Math.Min(lowery, mark.Rows - 1);
+            lowery = Math.Max(0, lowery);
             uppery = Math.Min(uppery, mark.Rows - 1);
             uppery = Math.Max(0, uppery);
 
 
-            double distance11 = DistanceMap[lowery][lowerx];
-            double distance12 = DistanceMap[lowery][upperx];
-            double distance21 = DistanceMap[uppery][lowerx];
-            double distance22 = DistanceMap[uppery][upperx];
+            double distance11 = DisMap[lowery, lowerx];
+            double distance12 = DisMap[lowery, upperx];
+            double distance21 = DisMap[uppery, lowerx];
+            double distance22 = DisMap[uppery, upperx];
 
-            if (lowerx == upperx && lowery == uppery) return distance11;
+            if (lowerx == upperx && lowery == uppery)
+                return distance11;
 
             //interpolation
             if (lowerx == upperx)
