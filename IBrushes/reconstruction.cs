@@ -52,26 +52,26 @@ namespace SmartCanvas
         {
             mark = GetMarkImgae(this.Canvas);
             boundaryPoints_2d = GetBoundaryPoints(mark);
-            //DistanceMap = BuildDistanceMap(mark.Rows, mark.Cols, boundaryPoints_2d);
+            DistanceMap = BuildDistanceMap(mark.Rows, mark.Cols, boundaryPoints_2d);
             drawProjectedPoint = true;
 
             // Init Optima Params
             center_z = 1.25;
-            center_xy = GetMarkCenter(boundaryPoints_2d, center_z);
-            //center_xy = GetMarkCenter2dPixel(boundaryPoints_2d, center_z);
+            //center_xy = GetMarkCenter(boundaryPoints_2d, center_z);
+            center_xy = GetMarkCenter2dPixel(boundaryPoints_2d, center_z);
 
 
-            //double[] bndl = new double[] { -1, -1, -1, 0.02, -5, -5, 0 };
-            //double[] x = new double[] { 0, -0.707, -0.707, 0.5, 0, 0, 1 }; //add center
-            //double[] bndu = new double[] { 1, 1, 1, 5, 5, 5, 20 };
+            double[] bndl = new double[] { -1, -1, -1, 0.02, -5, -5, 0 };
+            double[] x = new double[] { 0, -0.707, -0.707, 0.5, 0, 0, 1 }; //add center
+            double[] bndu = new double[] { 1, 1, 1, 5, 5, 5, 20 };
 
-            double[] bndl = new double[] { -1, -1, -1, 0.02 };
-            double[] x = new double[] { 0, -0.707, -0.707, 0.5 }; //add center
-            double[] bndu = new double[] { 1, 1, 1, 5 };
+            //double[] bndl = new double[] { -1, -1, -1, 0.02 };
+            //double[] x = new double[] { 0, -0.707, -0.707, 0.5 }; //add center
+            //double[] bndu = new double[] { 1, 1, 1, 5 };
 
             //double[] scale = new double[] { 1, 1, 1, 1, 10, 10, 10 };
             int paramsNum = 4;
-            int funNum =2;
+            int funNum = 3;
             double diffstep = 0.00001;
             double epsg = 0.000000000001;
             double epsf = 0;
@@ -97,11 +97,11 @@ namespace SmartCanvas
             Console.WriteLine("Stop Type: {0}, Total time: {1}s", rep.terminationtype, stopwatch.ElapsedMilliseconds / 1000.0);
 
             // Update Circle
-            //MyVector3 center = new MyVector3(x[4], x[5], x[6]);
-            MyVector3 center = new MyVector3(center_xy.x, center_xy.y, center_z);
+            MyVector3 center = new MyVector3(x[4], x[5], x[6]);
+            //MyVector3 center = new MyVector3(center_xy.x, center_xy.y, center_z);
 
 
-            MyVector3 normal = new MyVector3(x[0], x[1], x[2]); normal.Normalize();
+            MyVector3 normal = new MyVector3(x[0], x[1], x[2]); normal = normal.Normalize();
             double radius = x[3];
 
             topCircle = new MyCircle(center, radius, new MyPlane(center, normal));
@@ -114,10 +114,10 @@ namespace SmartCanvas
         {
             // Step 1: Init Params
             Inter_Num++;
-            MyVector3 center = new MyVector3(center_xy.x, center_xy.y, center_z);
-            //MyVector3 center = new MyVector3(x[4], x[5], x[6]);
+            //MyVector3 center = new MyVector3(center_xy.x, center_xy.y, center_z);
+            MyVector3 center = new MyVector3(x[4], x[5], x[6]);
 
-            MyVector3 normal = new MyVector3(x[0], x[1], x[2]); normal.Normalize();
+            MyVector3 normal = new MyVector3(x[0], x[1], x[2]); normal = normal.Normalize();
             double radius = x[3];
             MyCircle myC = new MyCircle(center, radius, new MyPlane(center, normal), this.boundaryPoints_2d.Count());
 
@@ -135,8 +135,8 @@ namespace SmartCanvas
             {
                 //------------------------------------------------------------------------------------
                 // Cor Map
-                int corIndex = CorMap[i];
-                double dist = Math.Pow((CirclePoints_2d[i] - boundaryPoints_2d[corIndex]).Length(), 2);
+                //int corIndex = CorMap[i];
+                //double dist = Math.Pow((CirclePoints_2d[i] - boundaryPoints_2d[corIndex]).Length(), 2);
 
                 //------------------------------------------------------------------------------------
                 // Distance Map
@@ -147,6 +147,13 @@ namespace SmartCanvas
                 //i_y = Math.Min(i_y, mark.Rows - 1);
                 //i_y = Math.Max(0, i_y);
                 //double dist = DistanceMap[i_y][i_x];
+
+                //------------------------------------------------------------------------------------
+                // Distance Interpolation from distance map
+                double dist = this.InterpolateDistanceWithDisMap(CirclePoints_2d[i]);
+
+
+
                 //------------------------------------------------------------------------------------
                 //double dist = double.MaxValue;
                 //for (int j = 0; j < boundaryPoints_2d.Count; j++)
@@ -162,10 +169,10 @@ namespace SmartCanvas
             // Set Cost function
             fi[0] = dist_all;
 
-            //center 3d match 2d
-            //double centerdis = (this.Compute2D(center) - center_xy).SquareLength();
-            //fi[1] = centerdis;
-            fi[1] = normal.SquareLength() - 1;
+            //////center 3d match 2d
+            double centerdis = (this.Compute2D(center) - center_xy).SquareLength();
+            fi[1] = centerdis;
+            fi[2] = normal.SquareLength() - 1;
 
             System.Console.WriteLine("{0}|| N: {1},{2},{3} r: {4} cost:{5}",
                 Inter_Num, x[0], x[1], x[2], x[3], dist_all);
@@ -289,6 +296,45 @@ namespace SmartCanvas
                 points_2d.Add(Compute2D(points_3d[i]));
             }
             return points_2d;
+        }
+
+        public double InterpolateDistanceWithDisMap(MyVector2 point_2d)
+        {
+            int lowerx = (int)Math.Floor(point_2d.x);
+            int upperx = (int)Math.Ceiling(point_2d.x);
+            int lowery = (int)Math.Floor(point_2d.y);
+            int uppery = (int)Math.Ceiling(point_2d.y);
+
+            lowerx = Math.Min(lowerx, mark.Cols - 1);
+            lowerx = Math.Max(0, lowerx);
+            lowery = Math.Min(lowery, mark.Rows - 1);
+            lowery = Math.Max(0, lowery);
+
+            upperx = Math.Min(upperx, mark.Cols - 1);
+            upperx = Math.Max(0, upperx);
+            uppery = Math.Min(uppery, mark.Rows - 1);
+            uppery = Math.Max(0, uppery);
+
+
+            double distance11 = DistanceMap[lowery][lowerx];
+            double distance12 = DistanceMap[lowery][upperx];
+            double distance21 = DistanceMap[uppery][lowerx];
+            double distance22 = DistanceMap[uppery][upperx];
+
+            if (lowerx == upperx && lowery == uppery) return distance11;
+
+            //interpolation
+            if (lowerx == upperx)
+                return distance21 * (point_2d.y - lowery) / (uppery - lowery) + distance11 * (uppery - point_2d.y) / (uppery - lowery);
+            if (lowery == uppery)
+                return distance12 * (point_2d.x - lowerx) / (upperx - lowerx) + distance11 * (upperx - point_2d.x) / (upperx - lowerx);
+
+
+            //bilateral interpolation
+            double distance1 = (point_2d.x - lowerx) * distance12 / (upperx - lowerx) + (upperx - point_2d.x) * distance11 / (upperx - lowerx);
+            double distance2 = (point_2d.x - lowerx) * distance22 / (upperx - lowerx) + (upperx - point_2d.x) * distance21 / (upperx - lowerx);
+            double distance = (point_2d.y - lowery) * distance2 / (uppery - lowery) + (uppery - point_2d.y) * distance1 / (uppery - lowery);
+            return distance;
         }
     }
 }
