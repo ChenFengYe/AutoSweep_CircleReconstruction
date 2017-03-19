@@ -237,6 +237,10 @@ namespace MyGeometry
 		{
 			return new MyVector2(this.x, this.y);
 		}
+        public MyVector4 ToMyVector4()
+        {
+            return new MyVector4(this.x, this.y, this.y, 1);
+        }
 		public double[] ToArray()
 		{
 			return new double[3] { x, y, z };
