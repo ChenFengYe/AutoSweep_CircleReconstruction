@@ -45,6 +45,11 @@ D:\Desktop\deep-clean-code\CircleReconstruction\IBrushes\obj\x86\Release\IBrushe
 D:\Desktop\CircleReconstruction\IBrushes\bin\Release\IBrushes.exe.config
 D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.exe
 D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.pdb
+D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.csprojResolveAssemblyReference.cache
+D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\SmartCanvas.FormAirBrush.resources
+D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.Properties.Resources.resources
+D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\SmartCanvas.SketchView.resources
+D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.csproj.GenerateResource.Cache
 D:\Desktop\CircleReconstruction\IBrushes\bin\Release\IBrushes.exe
 D:\Desktop\CircleReconstruction\IBrushes\bin\Release\IBrushes.pdb
 D:\Desktop\CircleReconstruction\IBrushes\bin\Release\Loyc.Collections.dll
@@ -59,8 +64,3 @@ D:\Desktop\CircleReconstruction\IBrushes\bin\Release\Loyc.Syntax.pdb
 D:\Desktop\CircleReconstruction\IBrushes\bin\Release\Loyc.Syntax.xml
 D:\Desktop\CircleReconstruction\IBrushes\bin\Release\Loyc.Utilities.pdb
 D:\Desktop\CircleReconstruction\IBrushes\bin\Release\Loyc.Utilities.xml
-D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.csprojResolveAssemblyReference.cache
-D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\SmartCanvas.FormAirBrush.resources
-D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.Properties.Resources.resources
-D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\SmartCanvas.SketchView.resources
-D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.csproj.GenerateResource.Cache
