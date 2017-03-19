@@ -88,3 +88,4 @@ E:\ObjectSnapping\CircleReconstruction\IBrushes\obj\x86\Release\SmartCanvas.Form
 E:\ObjectSnapping\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.Properties.Resources.resources
 E:\ObjectSnapping\CircleReconstruction\IBrushes\obj\x86\Release\SmartCanvas.SketchView.resources
 E:\ObjectSnapping\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.csproj.GenerateResource.Cache
+D:\Desktop\CircleReconstruction\IBrushes\bin\Release\ZedGraph.xml

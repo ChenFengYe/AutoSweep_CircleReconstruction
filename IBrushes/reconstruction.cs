@@ -65,13 +65,13 @@ namespace SmartCanvas
             //double[] x = new double[] { 0, -0.707, -0.707, 0.5, 0, 0, 1 }; //add center
             //double[] bndu = new double[] { 1, 1, 1, 5, 5, 5, 20 };
 
-            double[] bndl = new double[] { -1, -1, -1, 0.02 };
-            double[] x = new double[] { 0, -0.707, -0.707, 0.5 }; //add center
-            double[] bndu = new double[] { 1, 1, 1, 5 };
+            double[] bndl = new double[] { -0.5, -0.5, -0.5, 0.02 };
+            double[] x = new double[] { 0, 0, 0, 0.5 }; //add center
+            double[] bndu = new double[] { 0.5, 0.5, 0.5, 5 };
 
             //double[] scale = new double[] { 1, 1, 1, 1, 10, 10, 10 };
             int paramsNum = 4;
-            int funNum =2;
+            int funNum = 2;
             double diffstep = 0.00001;
             double epsg = 0.000000000001;
             double epsf = 0;
@@ -101,13 +101,23 @@ namespace SmartCanvas
             MyVector3 center = new MyVector3(center_xy.x, center_xy.y, center_z);
 
 
-            MyVector3 normal = new MyVector3(x[0], x[1], x[2]); normal.Normalize();
+            MyVector3 normal = new MyVector3(FromRotationToNormal(x[0], x[1], x[2])); normal.Normalize();
             double radius = x[3];
 
             topCircle = new MyCircle(center, radius, new MyPlane(center, normal));
             CirclePoints_2d = GetProjectionPoints_2D(topCircle.CirclePoints);
 
             this.view.Refresh();
+        }
+
+        private MyVector3 FromRotationToNormal(double thetaX, double thetaY, double thetaZ)
+        {
+            MyMatrix4d RotationX = MyMatrix4d.RotationMatrix(new MyVector3(1, 0, 0), thetaX * Math.PI);
+            MyMatrix4d RotationY = MyMatrix4d.RotationMatrix(new MyVector3(0, 1, 0), thetaY * Math.PI);
+            MyMatrix4d RotationZ = MyMatrix4d.RotationMatrix(new MyVector3(0, 0, 1), thetaZ * Math.PI);
+            MyVector3 normal_init = new MyVector3(0,-1,0);
+            MyVector3 normal_cur = (RotationZ * RotationY * RotationX * normal_init.ToMyVector4()).XYZ();
+            return normal_cur.Normalize();
         }
 
         private void function_project(double[] x, double[] fi, object obj)
@@ -117,7 +127,7 @@ namespace SmartCanvas
             MyVector3 center = new MyVector3(center_xy.x, center_xy.y, center_z);
             //MyVector3 center = new MyVector3(x[4], x[5], x[6]);
 
-            MyVector3 normal = new MyVector3(x[0], x[1], x[2]); normal.Normalize();
+            MyVector3 normal = new MyVector3(FromRotationToNormal(x[0], x[1], x[2])); normal.Normalize();
             double radius = x[3];
             MyCircle myC = new MyCircle(center, radius, new MyPlane(center, normal), this.boundaryPoints_2d.Count());
 
