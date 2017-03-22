@@ -125,13 +125,30 @@ namespace SmartCanvas
             if (d.ShowDialog(this) == DialogResult.OK)
             {
                 Image<Bgr, byte> img = new Image<Bgr, byte>(d.FileName);
-                this.sketchView.CreateCanvasEngine(img);                
+                this.sketchView.CreateCanvasEngine(img);
                 this.sketchView.CurrCanvasEngine.CreateDefaultCamera(1);
                 this.sketchView.CurrCanvasEngine.SetTransformCenter();
                 // save file prefix for late IO
                 string tmp = d.FileName.Substring(d.FileName.LastIndexOf('\\') + 1);
                 this.sketchView.CurrCanvasEngine.file_prefix = tmp.Substring(0, tmp.LastIndexOf('.'));
 
+                this.sketchView.Refresh();
+                this.sketchView.Focus();
+            }
+        }
+
+        private void toolStripButtonSweep_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog d = new OpenFileDialog();
+            d.FileName = "";
+            d.Filter = "image File (*.png)|*.png|All files (*.*)|*.*";
+            d.CheckFileExists = true;
+            if (d.ShowDialog(this) == DialogResult.OK)
+            {
+                Image<Gray, byte> img = new Image<Gray, byte>(d.FileName);
+                string tmp = d.FileName.Substring(0,d.FileName.LastIndexOf('\\') + 1);
+                this.sketchView.CurrCanvasEngine.ReadTopCircle(tmp + "top.circle");
+                this.sketchView.CurrCanvasEngine.Sweep(img);
                 this.sketchView.Refresh();
                 this.sketchView.Focus();
             }

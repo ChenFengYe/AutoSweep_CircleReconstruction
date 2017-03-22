@@ -90,7 +90,7 @@ namespace SmartCanvas
             // draw highlights
             this.DrawHighlights2D();
 
-            this.DrawLight();
+           // this.DrawLight();
 
             GL.PopMatrix();
             GL.PopMatrix();
@@ -202,7 +202,7 @@ namespace SmartCanvas
             }
         }
 
-     
+
         private void DrawHighlights2D()
         {
             GL.Disable(EnableCap.Lighting);
@@ -221,15 +221,15 @@ namespace SmartCanvas
             }
 
             //GL.Color3(Color.Salmon);
-            GL.Begin(PrimitiveType.Points);
-            //for (int i = 0; i < boundaryPoints_2d.Count; i++)
+            //GL.Begin(PrimitiveType.Points);
+            //int c = 0;
+
+            //for (int i = 0; i < this.trajpoints.Count; i++)
             //{
-            //    GL.Vertex2(boundaryPoints_2d[i].ToArray());
+            //    GL.Color3(c++, c++, c++);
+            //    GL.Vertex2(trajpoints[i].ToArray());
             //}
-            GL.PointSize(3.0f);
-            GL.Color3(Color.Gold);
-            GL.Vertex2(center_xy.ToArray());
-            GL.End();
+            //GL.End();
 
 
             GL.Enable(EnableCap.Lighting);
@@ -239,8 +239,33 @@ namespace SmartCanvas
 
         private void DrawHighlights3D()
         {
-            topCircle.Draw();
-            topCircle.DrawCapped();
+            GL.Disable(EnableCap.Lighting);
+            //topCircle.DrawCapped(Color.Salmon);
+
+
+            if (this.body != null)
+                body.Draw(Color.CornflowerBlue);
+
+
+
+            GL.PointSize(1.0f);
+            GL.Begin(PrimitiveType.Points);
+
+            int c = 0;
+            foreach (MyVector3 p in this.trajpoints_3d)
+            {
+                c = c + 10;
+                if (c > 255)
+                    c = 0;
+                GL.Color3(Color.FromArgb(c, 0, 0));
+                GL.Vertex3(p.ToArray());
+            }
+            GL.End();
+            GL.PointSize(1.0f);
+
+
+
+            GL.Enable(EnableCap.Lighting);
         }
 
     }// GLViewer

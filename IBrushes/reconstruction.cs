@@ -29,6 +29,7 @@ using Accord.Statistics.Distributions.DensityKernels;
 
 using NumericalRecipes;
 
+
 namespace SmartCanvas
 {
     public partial class CanvasEngine
@@ -120,8 +121,9 @@ namespace SmartCanvas
             topCircle = new MyCircle(center, radius, new MyPlane(center, normal));
             CirclePoints_2d = GetProjectionPoints_2D(topCircle.CirclePoints);
 
-            // ReOptimize();
+            ReOptimize();
             this.view.Refresh();
+            topCircle.Save();
         }
         private void function_project(double[] x, double[] fi, object obj)
         {
@@ -199,12 +201,12 @@ namespace SmartCanvas
 
         public void ReOptimize()
         {
-            double[] bndl = new double[] { -1, -1, -1, 0.02, -5, -5, 0 };
-            double[] x = new double[] { topCircle.Normal.x, topCircle.Normal.y, topCircle.Normal.z, topCircle.Radius, topCircle.Center.x, topCircle.Center.y, topCircle.Center.z }; //add center
-            double[] bndu = new double[] { 1, 1, 1, 5, 5, 5, 20 };
+            double[] bndl = new double[] { -5, -5, 0 };
+            double[] x = new double[] { topCircle.Center.x, topCircle.Center.y, topCircle.Center.z }; //add center
+            double[] bndu = new double[] { 5, 5, 20 };
 
-            int paramsNum = 7;
-            int funNum = 2;
+            int paramsNum = 3;
+            int funNum = 1;
 
             double diffstep = 0.00001;
             double epsg = 0.000000000001;
@@ -222,15 +224,15 @@ namespace SmartCanvas
             alglib.minlmcreatev(funNum, x, diffstep, out state);
             alglib.minlmsetbc(state, bndl, bndu);
             alglib.minlmsetcond(state, epsg, epsf, epsx, maxits);
-            alglib.minlmoptimize(state, function_project2, null, null);
+            alglib.minlmoptimize(state, function_withcenter, null, null);
             alglib.minlmresults(state, out x, out rep);
             stopwatch.Stop();
             Console.WriteLine("Stop Type: {0}, Total time: {1}s", rep.terminationtype, stopwatch.ElapsedMilliseconds / 1000.0);
 
             // Update Circle
-            MyVector3 center = new MyVector3(x[4], x[5], x[6]);
-            MyVector3 normal = new MyVector3(FromRotationToNormal(x[0], x[1], x[2])); normal = normal.Normalize();
-            double radius = x[3];
+            MyVector3 center = new MyVector3(x[0], x[1], x[2]);
+            MyVector3 normal = topCircle.Normal;
+            double radius = topCircle.Radius;
 
             topCircle = new MyCircle(center, radius, new MyPlane(center, normal));
             CirclePoints_2d = GetProjectionPoints_2D(topCircle.CirclePoints);
@@ -239,10 +241,9 @@ namespace SmartCanvas
         private void function_withcenter(double[] x, double[] fi, object obj)
         {
             Inter_Num++;
-            MyVector3 center = new MyVector3(x[4], x[5], x[6]);
-            MyVector3 normal = new MyVector3(FromRotationToNormal(x[0], x[1], x[2])); normal = normal.Normalize();
-
-            double radius = x[3];
+            MyVector3 center = new MyVector3(x[0], x[1], x[2]);
+            MyVector3 normal = topCircle.Normal;
+            double radius = topCircle.Radius;
             MyCircle myC = new MyCircle(center, radius, new MyPlane(center, normal), this.boundaryPoints_2d.Count());
 
             CirclePoints_2d = GetProjectionPoints_2D(myC.CirclePoints);
@@ -259,15 +260,11 @@ namespace SmartCanvas
 
             // Set Cost function
             fi[0] = dist_all;
-            fi[1] = normal.SquareLength() - 1;
 
             if (Inter_Num % 50 == 0)
-                System.Console.WriteLine("{0}|| N: {1},{2},{3} r: {4} cost:{5}",
-                    Inter_Num, x[0], x[1], x[2], x[3], dist_all);
+                System.Console.WriteLine("{0}|| C: {1},{2},{3} cost:{4}",
+                    Inter_Num, x[0], x[1], x[2], dist_all);
         }
-
-
-
 
         private MyVector3 FromRotationToNormal(double thetaX, double thetaY, double thetaZ)
         {
@@ -356,12 +353,10 @@ namespace SmartCanvas
             return DMap;
         }
 
-        public List<MyVector2> GetBoundaryPoints(Image<Gray, byte> markImg)
+        public List<MyVector2> GetBoundaryPoints(Image<Gray, byte> markImg, double cannyThreshold = 60, double cannyThresholdLinking = 100)
         {
-            double cannyThreshold = 60;
-            double cannyThresholdLinking = 100;
             Image<Gray, Byte> cannyimg = markImg.Canny(cannyThreshold, cannyThresholdLinking);
-            //new ImageViewer(cannyimg, "boundary").Show();
+            new ImageViewer(cannyimg, "boundary").Show();
             double backGround_threshold = 50;
             List<MyVector2> b_points = new List<MyVector2>();
             for (int i = 0; i < cannyimg.Height; i++)
@@ -443,5 +438,129 @@ namespace SmartCanvas
             double distance = (point_2d.y - lowery) * distance2 / (uppery - lowery) + (uppery - point_2d.y) * distance1 / (uppery - lowery);
             return distance;
         }
+
+        public void ReadTopCircle(string filename)
+        {
+            topCircle = new MyCircle(filename);
+        }
+
+        //---------------------------------------------------------------------------
+        //sweep----------------------------------------------------------------------
+        //---------------------------------------------------------------------------
+        public SweepMesh body = null;
+        public MyPlane targetplane = null;
+        public List<MyVector3> trajpoints_3d = new List<MyVector3>();
+        public List<MyVector2> trajpoints = new List<MyVector2>();
+        public List<MyVector2> trajpoints2 = new List<MyVector2>();
+        public void Sweep(Image<Gray, byte> trajectoryimg_)
+        {
+
+            for (int i = 0; i < trajectoryimg_.Height; i++)
+            {
+                for (int j = 0; j < trajectoryimg_.Width; j++)
+                {
+                    if (trajectoryimg_[i, j].Intensity > 80)
+                        trajpoints.Add(new MyVector2(j, i));
+                }
+            }
+
+            trajpoints = CurveFitting(trajpoints);
+            trajpoints = this.ResetPath(trajpoints, 10);
+
+            trajpoints_3d = this.ProjectTrajAccording2Profile(trajpoints);
+
+            body = new SweepMesh(this.topCircle, trajpoints_3d, null);
+
+
+        }
+
+        public List<MyVector2> CurveFitting(List<MyVector2> points)
+        {
+            Console.WriteLine("Fit curve");
+            double[] x = new double[points.Count];
+            double[] y = new double[points.Count];
+
+            for (int i = 0; i < points.Count; i++)
+            {
+                x[i] = points[i].x;
+                y[i] = points[i].y;
+            }
+
+            int outinfo = 0;
+            alglib.spline1dfitreport rep;
+            alglib.spline1dinterpolant p;
+            alglib.spline1dfitpenalized(x, y, points.Count, 2.0, out outinfo, out p, out rep);
+
+            List<MyVector2> output = new List<MyVector2>();
+            for (int i = 0; i < p.innerobj.n; i++)
+            {
+                output.Add(new MyVector2(p.innerobj.x[i], alglib.spline1dcalc(p, p.innerobj.x[i])));
+            }
+            return output;
+
+        }
+
+
+
+        List<MyVector3> ProjectTrajAccording2Profile(List<MyVector2> trajpoints)
+        {
+            List<MyVector3> output = new List<MyVector3>();
+            MyVector3 profilenormal = this.topCircle.Normal;
+            MyVector3 profilecenter = this.topCircle.Center;
+            MyVector3 viewvector = this.camera.target; //suppose to be (0,0,1)
+
+            //find a plane that is almost vertical to view vector and the normal line of profile is on the plane
+            MyVector3 temp = profilenormal.Cross(viewvector);
+            MyVector3 targetplanenormal = profilenormal.Cross(temp);
+
+            targetplane = new MyPlane(profilecenter, targetplanenormal);
+
+            output = this.Proj2dToPlane(targetplane, trajpoints);
+            return output;
+        }
+
+        private List<MyVector2> ResetPath(List<MyVector2> pts, int step)
+        {
+            int i;
+            double left;
+            List<MyVector2> list = new List<MyVector2>();
+
+            list.Add(pts[0]);
+            left = step;
+            for (i = 0; i < pts.Count() - 1; i++)
+            {
+                double tmp = (pts[i] - pts[(i + 1) % pts.Count()]).Length();
+                if (tmp < left)
+                {
+                    left -= tmp;
+                }
+                else
+                {
+                    double offset = left;
+                    while (offset < tmp)
+                    {
+                        MyVector2 p = pts[i] + (pts[(i + 1) % pts.Count()] - pts[i]) * (offset / tmp);
+                        list.Add(p);
+                        offset += step;
+                    }
+                    left = offset - tmp;
+                }
+            }
+            return list;
+
+        }
+
+        public List<MyVector3> Proj2dToPlane(MyPlane plane, List<MyVector2> points)
+        {
+            List<MyVector3> output = new List<MyVector3>();
+            foreach (MyVector2 p in points)
+            {
+                MyVector3 raynear = this.UnProject(p.x, p.y, -5);
+                MyVector3 rayfar = this.UnProject(p.x, p.y, 5);
+                output.Add(plane.LineIntersection(raynear, rayfar));
+            }
+            return output;
+        }
+
     }
 }

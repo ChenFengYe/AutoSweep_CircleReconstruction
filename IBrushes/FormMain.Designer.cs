@@ -38,10 +38,9 @@
             this.showBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showAxisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonFitCircle = new System.Windows.Forms.ToolStripButton();
             this.showSketchyOutlinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.sketchView = new SmartCanvas.SketchView();
             this.buttonCloseTab = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.showOutLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +50,8 @@
             this.sendBackSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.junctionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotTime = new System.Windows.Forms.Timer(this.components);
+            this.sketchView = new SmartCanvas.SketchView();
+            this.toolStripButtonSweep = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -64,7 +65,8 @@
             this.toolStripButtonView,
             this.toolStripButtonSetVIewPoint,
             this.toolStripButtonRefresh,
-            this.toolStripButton2});
+            this.toolStripButtonFitCircle,
+            this.toolStripButtonSweep});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(748, 39);
@@ -85,7 +87,7 @@
             // loadImageToolStripMenuItem
             // 
             this.loadImageToolStripMenuItem.Name = "loadImageToolStripMenuItem";
-            this.loadImageToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.loadImageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.loadImageToolStripMenuItem.Text = "Load Image";
             this.loadImageToolStripMenuItem.Click += new System.EventHandler(this.loadImageToolStripMenuItem_Click);
             // 
@@ -141,15 +143,15 @@
             this.toolStripButtonRefresh.ToolTipText = "Reset camera View";
             this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButtonRefresh_Click);
             // 
-            // toolStripButton2
+            // toolStripButtonFitCircle
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(57, 36);
-            this.toolStripButton2.Text = "FitCircle";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click_1);
+            this.toolStripButtonFitCircle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonFitCircle.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonFitCircle.Image")));
+            this.toolStripButtonFitCircle.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonFitCircle.Name = "toolStripButtonFitCircle";
+            this.toolStripButtonFitCircle.Size = new System.Drawing.Size(57, 36);
+            this.toolStripButtonFitCircle.Text = "FitCircle";
+            this.toolStripButtonFitCircle.Click += new System.EventHandler(this.toolStripButton2_Click_1);
             // 
             // showSketchyOutlinesToolStripMenuItem
             // 
@@ -167,21 +169,6 @@
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(748, 578);
             this.panelMain.TabIndex = 1;
-            // 
-            // sketchView
-            // 
-            this.sketchView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.sketchView.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.sketchView.CurrCanvasEngine = null;
-            this.sketchView.CurrentMode = SmartCanvas.SketchView.EnumOperationMode.Viewing;
-            this.sketchView.Location = new System.Drawing.Point(0, 3);
-            this.sketchView.Name = "sketchView";
-            this.sketchView.Size = new System.Drawing.Size(745, 572);
-            this.sketchView.TabIndex = 3;
-            this.sketchView.TurnOnSketchOverlay = false;
-            this.sketchView.VSync = false;
             // 
             // buttonCloseTab
             // 
@@ -232,6 +219,31 @@
             this.junctionToolStripMenuItem.Name = "junctionToolStripMenuItem";
             this.junctionToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             // 
+            // sketchView
+            // 
+            this.sketchView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sketchView.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.sketchView.CurrCanvasEngine = null;
+            this.sketchView.CurrentMode = SmartCanvas.SketchView.EnumOperationMode.Viewing;
+            this.sketchView.Location = new System.Drawing.Point(0, 3);
+            this.sketchView.Name = "sketchView";
+            this.sketchView.Size = new System.Drawing.Size(745, 572);
+            this.sketchView.TabIndex = 3;
+            this.sketchView.TurnOnSketchOverlay = false;
+            this.sketchView.VSync = false;
+            // 
+            // toolStripButtonSweep
+            // 
+            this.toolStripButtonSweep.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonSweep.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSweep.Image")));
+            this.toolStripButtonSweep.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSweep.Name = "toolStripButtonSweep";
+            this.toolStripButtonSweep.Size = new System.Drawing.Size(50, 36);
+            this.toolStripButtonSweep.Text = "Sweep";
+            this.toolStripButtonSweep.Click += new System.EventHandler(this.toolStripButtonSweep_Click);
+            // 
             // FormAirBrush
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -273,8 +285,9 @@
         private System.Windows.Forms.Timer rotTime;
         private System.Windows.Forms.ToolStripButton toolStripButtonRefresh;
         private System.Windows.Forms.ToolStripMenuItem showAxisToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButtonFitCircle;
         private System.Windows.Forms.ToolStripMenuItem loadImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSweep;
 	}
 }
 

@@ -154,7 +154,7 @@ namespace MyGeometry
                 x = new MyVector3(1, 0, 0);
             MyVector3 y = normal.Cross(x).Normalize();
             CoordinateFrame frame = new CoordinateFrame(point, x, y, normal);
-            double s = 0.02;
+            double s = 0.8;
             MyVector3 v1 = frame.GetPointLocalCoord(new MyVector3(s, s, 0));
             MyVector3 v2 = frame.GetPointLocalCoord(new MyVector3(-s, s, 0));
             MyVector3 v3 = frame.GetPointLocalCoord(new MyVector3(-s, -s, 0));
@@ -280,7 +280,7 @@ namespace MyGeometry
             //   System.Console.WriteLine(planeEquation.DistanceToPoint(new Accord.Math.Point3((float)p.x, (float)p.y, (float)p.z)));
         }
 
-    
+
         public void Scale(double ratio)
         {
             for (int i = 0; i < this.planeVertices.Count; i++)
@@ -538,7 +538,7 @@ namespace MyGeometry
                 planeVertices2d.Add(new MyVector2(fx * planeVertices[i].x / planeVertices[i].z + u0, fy * planeVertices[i].y / planeVertices[i].z + v0));
             }
         }
-    
+
 
         public MyVector3 LineIntersection(MyVector3 v1, MyVector3 v2)
         {
@@ -634,25 +634,27 @@ namespace MyGeometry
         public void DrawMyPlane(byte opacity = 50)
         {
             // draw bounding quad
-            if (this.boundQuad != null)
-            {
-                GL.Disable(EnableCap.Lighting);
-                this.boundQuad.DrawBlended(this.planeColor, opacity);
-                this.boundQuad.DrawOutLine(Color.Black);
-                GL.Enable(EnableCap.Lighting);
-            }
-            return;
-            //////draw convex hull
-            //GL.Disable(EnableCap.Normalize);
-            ////polygon
-            //GL.Begin(PrimitiveType.Polygon);
-            //GL.Color4(this.planeColor.R, this.planeColor.G, this.planeColor.B, opacity);
-            //for (int i = 0; i < this.planeVertices.Count(); i++)
+            //if (this.boundQuad != null)
             //{
-            //	GL.Vertex3(this.planeVertices[i].x, this.planeVertices[i].y, this.planeVertices[i].z);
+            //    GL.Disable(EnableCap.Lighting);
+            //    this.boundQuad.DrawBlended(this.planeColor, opacity);
+            //   this.boundQuad.DrawOutLine(Color.Black);
+            //    GL.Enable(EnableCap.Lighting);
             //}
-            //GL.End();
-            //GL.Enable(EnableCap.Normalize);
+            //return;
+
+
+            //////draw convex hull
+            GL.Disable(EnableCap.Lighting);
+            //polygon
+            GL.Begin(PrimitiveType.Polygon);
+            GL.Color4(this.planeColor.R, this.planeColor.G, this.planeColor.B, opacity);
+            for (int i = 0; i < this.planeVertices.Count(); i++)
+            {
+                GL.Vertex3(this.planeVertices[i].x, this.planeVertices[i].y, this.planeVertices[i].z);
+            }
+            GL.End();
+            GL.Enable(EnableCap.Lighting);
         }
 
 
