@@ -154,6 +154,21 @@ namespace SmartCanvas
             }
         }
 
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog d = new OpenFileDialog();
+            d.FileName = "";
+            d.Filter = "image File (*.png)|*.png|All files (*.*)|*.*";
+            d.CheckFileExists = true;
+            if (d.ShowDialog(this) == DialogResult.OK)
+            {
+                this.sketchView.CurrCanvasEngine.edgeImage = new Image<Bgr, byte>(d.FileName);
+                this.sketchView.CurrCanvasEngine.CylinderSnapping();
+                this.sketchView.Refresh();
+                this.sketchView.Focus();
+            }
+        }
+
     }
 }
 

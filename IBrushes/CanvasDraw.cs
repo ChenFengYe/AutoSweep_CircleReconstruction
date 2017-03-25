@@ -263,6 +263,14 @@ namespace SmartCanvas
             GL.End();
             GL.PointSize(1.0f);
 
+            // Draw Intersection
+            GL.PointSize(5.0f);
+            GL.Begin(PrimitiveType.Points);
+            GL.Color3(Color.Red);
+            GL.Vertex3(Insection2.ToArray());
+            GL.Color3(Color.Red);
+            GL.Vertex3(Insection1.ToArray());
+            GL.End();
 
 
             GL.Enable(EnableCap.Lighting);
