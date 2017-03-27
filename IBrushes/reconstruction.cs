@@ -511,6 +511,8 @@ namespace SmartCanvas
         MyPlane cutPlane = new MyPlane();
         MyVector3 Insection1 = new MyVector3();
         MyVector3 Insection2 = new MyVector3();
+        Line3 setLine = null;
+
         public void CylinderSnapping()
         {
             // Get Boundary2
@@ -543,36 +545,40 @@ namespace SmartCanvas
             RayTracein3DPlane(boundary3, new Line3(cur_p, cutPlane.Normal()), cutPlane, cur_p, out norInsec, out notNorInsec);
             Insection1 = boundary3[norInsec];
             Insection2 = boundary3[notNorInsec];
+
+            MyVector3 setPoint = boundary3[1];
+            MyVector3 setNormal = GetLocalTangential(1, boundary3);
+            setLine = new Line3(setPoint, setNormal);
             this.view.Refresh();
         }
 
-        //private MyVector3 GetLocalTangential(int p, List<MyVector3> boundary3)
-        //{
-        //    // Get Nearnest Pointss
-        //    List<NearPoint> nearPs = new List<NearPoint>();
-        //    for (int i = 0; i < boundary3.Count; i++)
-        //    {
-        //        NearPoint p_i = new NearPoint();
-        //        p_i.v = boundary3[i];
-        //        p_i.dist = (boundary3[p] - p_i.v).Length();
-        //        p_i.index = i;
-        //        nearPs.Add(p_i);
-        //    }
+        private MyVector3 GetLocalTangential(int p, List<MyVector3> boundary3)
+        {
+            // Get Nearnest Pointss
+            List<NearPoint> nearPs = new List<NearPoint>();
+            for (int i = 0; i < boundary3.Count; i++)
+            {
+                NearPoint p_i = new NearPoint();
+                p_i.v = boundary3[i];
+                p_i.dist = (boundary3[p] - p_i.v).Length();
+                p_i.index = i;
+                nearPs.Add(p_i);
+            }
 
-        //    // Fit Line with k nearest points
-        //    int k = 10;
-        //    List<NearPoint> kNearPs = (from a in nearPs orderby a.dist ascending select a).Take(k).ToList();
-        //    List<MyVector3> kNearPv = new List<MyVector3>();
-        //    foreach (var kNearP in kNearPs)
-        //    {
-        //        kNearPv.Add(kNearP.v);
-        //    }
-        //    var fitline = new RansacLine3d(0.00005, 0.9);
-        //    Line3 line3d = fitline.Estimate(kNearPv);
+            // Fit Line with k nearest points
+            int k = 10;
+            List<NearPoint> kNearPs = (from a in nearPs orderby a.dist ascending select a).Take(k).ToList();
+            List<MyVector3> kNearPv = new List<MyVector3>();
+            foreach (var kNearP in kNearPs)
+            {
+                kNearPv.Add(kNearP.v);
+            }
+            var fitline = new RansacLine3d(0.00005, 0.9);
+            Line3 line3d = fitline.Estimate(kNearPv);
 
-        //    // Get Local Tangential
-        //    return line3d.dir;
-        //}
+            // Get Local Tangential
+            return line3d.dir;
+        }
 
         private struct NearPoint
         {
@@ -581,7 +587,7 @@ namespace SmartCanvas
             public int index;
         }
 
-        private void RayTracein3DPlane(List<MyVector3> points, Line3 ray, MyPlane CutPlane,MyVector3 curp, out int norInsec, out int notNorInsec)
+        private void RayTracein3DPlane(List<MyVector3> points, Line3 ray, MyPlane CutPlane, MyVector3 curp, out int norInsec, out int notNorInsec)
         {
             norInsec = -1; // Normal side
             notNorInsec = -1; // Not Normal side
@@ -718,74 +724,74 @@ namespace SmartCanvas
                 this.probability = 0.9;
             }
 
-            //public Line3 Estimate(List<MyVector3> points)
-            //{
-            //    int iter = 200;
-            //    if (points.Count == 0) return null;
-            //    Random rd = new Random();
+            public Line3 Estimate(List<MyVector3> points)
+            {
+                int iter = 200;
+                if (points.Count == 0) return null;
+                Random rd = new Random();
 
-            //    MyVector3 A = new MyVector3();
-            //    MyVector3 B = new MyVector3();
+                MyVector3 A = new MyVector3();
+                MyVector3 B = new MyVector3();
 
-            //    int maxpointinline = int.MinValue;
+                int maxpointinline = int.MinValue;
 
-            //    for (int i = 0; i < iter; i++)
-            //    {
-            //        A = points[rd.Next(points.Count)];
-            //        B = points[rd.Next(points.Count)];
-            //        if (A == B) continue;  //if can't generate line
+                for (int i = 0; i < iter; i++)
+                {
+                    A = points[rd.Next(points.Count)];
+                    B = points[rd.Next(points.Count)];
+                    if (A == B) continue;  //if can't generate line
 
-            //        Line3 testline = new Line3(A, (B - A).Normalize());
-            //        List<MyVector3> tempinliers = new List<MyVector3>();
-            //        int inlierscount = 0;
-            //        for (int j = 0; j < points.Count; j++)
-            //        {
-            //            if (points[j] != A && points[j] != B)
-            //            {
-            //                if (testline.DistanceToLine(points[j]) < thres)
-            //                {
-            //                    tempinliers.Add(points[j]);
-            //                    inlierscount++;
-            //                }
-            //            }
-            //        }
+                    Line3 testline = new Line3(A, (B - A).Normalize());
+                    List<MyVector3> tempinliers = new List<MyVector3>();
+                    int inlierscount = 0;
+                    for (int j = 0; j < points.Count; j++)
+                    {
+                        if (points[j] != A && points[j] != B)
+                        {
+                            if (testline.DistanceToLine(points[j]) < thres)
+                            {
+                                tempinliers.Add(points[j]);
+                                inlierscount++;
+                            }
+                        }
+                    }
 
-            //        if (inlierscount > maxpointinline)
-            //        {
-            //            maxpointinline = inlierscount;
-            //            this.bestline = testline.Copy();
-            //            this.inliers.Clear();
-            //            foreach (MyVector3 p in tempinliers)
-            //                this.inliers.Add(p);
-            //        }
+                    if (inlierscount > maxpointinline)
+                    {
+                        maxpointinline = inlierscount;
+                        this.bestline = testline.Copy();
+                        this.inliers.Clear();
+                        foreach (MyVector3 p in tempinliers)
+                            this.inliers.Add(p);
+                    }
 
-            //        if (inlierscount >= probability * points.Count)
-            //            break;
-            //    }
+                    if (inlierscount >= probability * points.Count)
+                        break;
+                }
 
-            //    if (this.inliers.Count != 0)
-            //    {
-            //        double mint = double.MaxValue;
-            //        double maxt = double.MinValue;
-            //        foreach (MyVector3 p in this.inliers)
-            //        {
-            //            double t = this.bestline.ComputeT(p);
-            //            if (t > maxt)
-            //                maxt = t;
-            //            if (t < mint)
-            //                mint = t;
-            //        }
-            //        bestline.SetPoints(mint, maxt);
-            //    }
+                if (this.inliers.Count != 0)
+                {
+                    double mint = double.MaxValue;
+                    double maxt = double.MinValue;
+                    foreach (MyVector3 p in this.inliers)
+                    {
+                        double t = this.bestline.ComputeT(p);
+                        if (t > maxt)
+                            maxt = t;
+                        if (t < mint)
+                            mint = t;
+                    }
+                    bestline.SetPoints(mint, maxt);
+                }
 
-            //    if (bestline != null && bestline.startpoint.x != double.NaN && bestline.startpoint.y != double.NaN && bestline.startpoint.z != double.NaN &&
-            //    bestline.endpoint.x != double.NaN && bestline.endpoint.y != double.NaN && bestline.endpoint.z != double.NaN &&
-            //        (!bestline.startpoint.IsNull() && !bestline.endpoint.IsNull()))
-            //        return bestline;
-            //    else
-            //        return null;
+                if (bestline != null && bestline.startpoint.x != double.NaN && bestline.startpoint.y != double.NaN && bestline.startpoint.z != double.NaN &&
+                bestline.endpoint.x != double.NaN && bestline.endpoint.y != double.NaN && bestline.endpoint.z != double.NaN &&
+                    (!bestline.startpoint.IsNull() && !bestline.endpoint.IsNull()))
+                    return bestline;
+                else
+                    return null;
 
-            //}
+            }
 
         }
     }

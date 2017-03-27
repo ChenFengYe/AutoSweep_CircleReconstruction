@@ -90,7 +90,7 @@ namespace SmartCanvas
             // draw highlights
             this.DrawHighlights2D();
 
-           // this.DrawLight();
+            // this.DrawLight();
 
             GL.PopMatrix();
             GL.PopMatrix();
@@ -246,6 +246,8 @@ namespace SmartCanvas
             if (this.body != null)
                 body.Draw(Color.CornflowerBlue);
 
+            if (this.setLine != null)
+                setLine.Draw(Color.Blue, 3.0f, 0.5);
 
 
             GL.PointSize(1.0f);
@@ -261,6 +263,19 @@ namespace SmartCanvas
                 GL.Vertex3(p.ToArray());
             }
             GL.End();
+
+            GL.Begin(PrimitiveType.Points);
+
+            foreach (MyVector3 p in this.boundary3)
+            {
+                GL.Color3(Color.Red);
+                GL.Vertex3(p.ToArray());
+            }
+            GL.End();
+
+
+
+
             GL.PointSize(1.0f);
 
             // Draw Intersection

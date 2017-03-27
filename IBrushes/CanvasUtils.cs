@@ -75,6 +75,11 @@ namespace SmartCanvas
             return false;
         }
 
+
+
+
+
+
         // find if a point in inside a polygon
         public static bool PointInPoly(MyVector2 p, MyVector2[] points)
         {
@@ -1557,7 +1562,7 @@ namespace SmartCanvas
         public void Draw(Color color, float p = 2.0f, double linelength = 1)
         {
 
-            linelength *= 0.01;
+            //linelength *= 0.01;
 
             if (this.length != -1)
                 linelength = this.length;
@@ -1574,7 +1579,9 @@ namespace SmartCanvas
             else
             {
                 GL.Color4(color.R, color.G, color.B, (byte)200);
-                GL.Vertex3(startpoint.x - dir.x * linelength, startpoint.y - dir.y * linelength, startpoint.z - dir.z * linelength);
+                //GL.Vertex3(startpoint.x - dir.x * linelength, startpoint.y - dir.y * linelength, startpoint.z - dir.z * linelength);
+                GL.Vertex3(startpoint.x, startpoint.y, startpoint.z);
+
                 GL.Vertex3(startpoint.x + dir.x * linelength, startpoint.y + dir.y * linelength, startpoint.z + dir.z * linelength);
             }
             GL.End();
