@@ -151,7 +151,7 @@ namespace SmartCanvas
             {
                 Image<Gray, byte> img = new Image<Gray, byte>(d.FileName);
                 string imgdir = d.FileName.Substring(0, d.FileName.LastIndexOf('.') + 1);
-                this.sketchView.CurrCanvasEngine.ReadTopCircle(imgdir + "circle");
+                //this.sketchView.CurrCanvasEngine.ReadTopCircle(imgdir + "circle");
                 this.sketchView.CurrCanvasEngine.Sweep(img);
                 this.sketchView.Refresh();
                 this.sketchView.Focus();
