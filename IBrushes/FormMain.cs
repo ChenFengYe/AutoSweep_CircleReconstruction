@@ -126,8 +126,10 @@ namespace SmartCanvas
             {
                 Image<Bgr, byte> img = new Image<Bgr, byte>(d.FileName);
                 this.sketchView.CreateCanvasEngine(img);
+                this.sketchView.CurrCanvasEngine.mark = this.sketchView.CurrCanvasEngine.GetMarkImgae(img);
                 this.sketchView.CurrCanvasEngine.CreateDefaultCamera(1);
                 this.sketchView.CurrCanvasEngine.SetTransformCenter();
+
                 string imgdir = d.FileName.Substring(0, d.FileName.LastIndexOf('.') + 1);
                 this.sketchView.CurrCanvasEngine.ReadTopCircle(imgdir + "circle");
                 // save file prefix for late IO
@@ -164,7 +166,9 @@ namespace SmartCanvas
             d.CheckFileExists = true;
             if (d.ShowDialog(this) == DialogResult.OK)
             {
-                this.sketchView.CurrCanvasEngine.edgeImage = new Image<Bgr, byte>(d.FileName);
+                this.sketchView.CurrCanvasEngine.edgeImage = new Image<Gray, byte>(d.FileName);
+                string imgdir = d.FileName.Substring(0, d.FileName.LastIndexOf('.') + 1);
+                this.sketchView.CurrCanvasEngine.ReadTopCircle(imgdir + "circle");
                 this.sketchView.CurrCanvasEngine.CylinderSnapping();
                 this.sketchView.Refresh();
                 this.sketchView.Focus();

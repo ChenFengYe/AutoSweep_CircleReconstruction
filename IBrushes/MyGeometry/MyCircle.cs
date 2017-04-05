@@ -88,6 +88,15 @@ namespace MyGeometry
             ComputeArea();
             SampleCirclePoints3d(c, p.Normal(), r, sample);
         }
+        public MyCircle(MyVector3 c, double r, MyVector3 n, int sample = 100)
+        {
+            center = c;
+            radius = r;
+            belongPlane = new MyPlane(c,n);
+            normal = belongPlane.Normal();
+            ComputeArea();
+            SampleCirclePoints3d(c, belongPlane.Normal(), r, sample);
+        }
         public MyCircle(MyVector3 c, double r, MyPlane p, List<MyVector3> cp)
         {
             center = c;

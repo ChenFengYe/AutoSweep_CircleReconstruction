@@ -15,6 +15,8 @@ namespace SmartCanvas
         List<MyVector3> profile = new List<MyVector3>();
         List<MyVector3> trajectory1 = new List<MyVector3>();
         List<MyVector3> trajectory2 = new List<MyVector3>();
+
+        //List<List<MyVector3>> trajectory = new List<MyVector3>();
         Mesh objectmesh = null;
         public List<MyVector3> Profile
         {
@@ -44,6 +46,12 @@ namespace SmartCanvas
             //this.CreateMesh();
             this.CreateSymmetryMesh(profile_.Normal, profile_.Radius);
         }
+
+        public SweepMesh(List<MyCircle> CircleList)
+        {
+            this.CreateCylinderMesh(CircleList);
+        }
+
         private void CreateSymmetryMesh(MyVector3 profilenormal_, double radius_)
         {
             int n = this.profile.Count;   // base stroke point count
@@ -138,7 +146,35 @@ namespace SmartCanvas
                 }
             }
             this.objectmesh = new Mesh(vertices, findices);
+        }
 
+        private void CreateCylinderMesh(List<MyCircle> CircleList)
+        {
+            int n = CircleList[0].CirclePoints.Count;   // base stroke point count
+            int m = CircleList.Count;   // ref stroke point count
+
+            List<double> vertices = new List<double>();
+            for (int i = 0; i < CircleList.Count; i++)
+            {
+                foreach (var point in CircleList[i].CirclePoints)
+                {
+                    vertices.AddRange(point.ToArray());
+                }
+            }
+
+            List<int> findices = new List<int>();
+            for (int i = 0; i < m-1; ++i)
+            {
+                for (int j = 0; j < n - 1; ++j)
+                {
+                    int s = i * n + j, t = i * n + j + 1;
+                    int p = (i + 1) * n + j, q = (i + 1) * n + j + 1;
+                    // s-t-p, t-p-q
+                    findices.Add(s); findices.Add(t); findices.Add(p);
+                    findices.Add(t); findices.Add(p); findices.Add(q);
+                }
+            }
+            this.objectmesh = new Mesh(vertices, findices);
         }
 
         private void CreateMesh()

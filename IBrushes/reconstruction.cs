@@ -29,13 +29,12 @@ using Accord.Statistics.Distributions.DensityKernels;
 
 using NumericalRecipes;
 
-
 namespace SmartCanvas
 {
     public partial class CanvasEngine
     {
-        private Image<Gray, byte> mark;                                 // Mark of Image
-        List<MyVector2> boundaryPoints_2d = new List<MyVector2>();      // The boundary of the Mark of the Image
+        public Image<Gray, byte> mark;                                 // Mark of Image
+        List<MyVector2> boundaryPoints_2d = null;      // The boundary of the Mark of the Image
         MyCircle topCircle = new MyCircle();                            // The Top Circle of the cylinder
 
         bool drawProjectedPoint = false;                                // To Draw the Project Points
@@ -276,6 +275,7 @@ namespace SmartCanvas
             MyVector3 normal_cur = (RotationZ * RotationY * RotationX * normal_init.ToMyVector4()).XYZ();
             return normal_cur.Normalize();
         }
+
         private double GetOtherNormalParams(double n0, double n1)
         {
             return Math.Sqrt(1 - n0 * n0 - n1 * n1);
@@ -329,7 +329,7 @@ namespace SmartCanvas
                 }
                 Dmap.Add(rowDmap);
             }
-            new ImageViewer(disimg, "dis map").Show();
+            //new ImageViewer(disimg, "dis map").Show();
             return Dmap;
         }
 
@@ -357,7 +357,7 @@ namespace SmartCanvas
         public List<MyVector2> GetBoundaryPoints(Image<Gray, byte> markImg, double cannyThreshold = 60, double cannyThresholdLinking = 100)
         {
             Image<Gray, Byte> cannyimg = markImg.Canny(cannyThreshold, cannyThresholdLinking);
-            new ImageViewer(cannyimg, "boundary").Show();
+            //new ImageViewer(cannyimg, "boundary").Show();
             double backGround_threshold = 50;
             List<MyVector2> b_points = new List<MyVector2>();
             for (int i = 0; i < cannyimg.Height; i++)
@@ -504,55 +504,194 @@ namespace SmartCanvas
         //---------------------------------------------------------------------------
         //sweep  with  Curve --------------------------------------------------
         //---------------------------------------------------------------------------
-        public Image<Bgr, byte> edgeImage;  // Edge Image
+        public Image<Gray, byte> edgeImage;  // Edge Image
         List<MyVector3> boundary3 = new List<MyVector3>();
         MyVector3 cur_p = new MyVector3();
         MyVector3 cur_dire = new MyVector3();
         MyPlane cutPlane = new MyPlane();
         MyVector3 Insection1 = new MyVector3();
         MyVector3 Insection2 = new MyVector3();
-        Line3 setLine = null;
-
+        Line3 setLine1 = null;
+        Line3 setLine2 = null;
+        Line3 setdirecLine = null;
+        Line3 ray = null;
+        SweepMesh CurveCyliner = null;
+        List<MyVector3> GeneratedCenters = null;
+        double epsilon = 0.000001;
         public void CylinderSnapping()
         {
             // Get Boundary2
-            List<MyVector2> boundary2 = new List<MyVector2>();
-            for (int i = 0; i < edgeImage.Height; i++)
-            {
-                for (int j = 0; j < edgeImage.Width; j++)
-                {
-                    if (edgeImage[i, j].Red > 200)
-                    {
-                        boundary2.Add(new MyVector2(j, i));
-                    }
-                }
-            }
+            if (boundaryPoints_2d == null)
+                boundaryPoints_2d = GetBoundaryPoints(mark);
+            List<MyVector2> boundary2 = ExtractOutline(edgeImage, boundaryPoints_2d);
 
             // Project  2D edge points
             MyVector3 normal = topCircle.Normal.Cross(this.camera.target).Cross(topCircle.Normal);
             MyPlane sectionPlane = new MyPlane(topCircle.Center, normal);
             boundary3 = Proj2dToPlane(sectionPlane, boundary2);
 
-            double offset = 0.0001;
+            // UpdateCircleNormal
+            //        foreach (var pbondary3 in pbondary3)
+            //        {
+
+            //        }
+            //        if (topCircle.Center)
+            //{
+
+            //}
+
+            // Algorithm Init Params
+            double offset = topCircle.Radius / 50;
             cur_p = topCircle.Center - offset * topCircle.Normal;
-            cur_dire = -1.0 * topCircle.Normal;
-
-            // Step 1: Get IntersectionPoint
-
-            cutPlane = new MyPlane(cur_p, sectionPlane.Normal().Cross(cur_dire).Normalize());
+            cur_dire = 1.0 * topCircle.Normal;
+            MyVector3 cur_dire_new = new MyVector3(cur_dire);
+            MyVector3 cur_p_new = new MyVector3(-1 * cur_p);
+            Insection1 = new MyVector3(1, 1, 1);
+            Insection2 = new MyVector3(0, 0, 0);
             int norInsec = -1;
             int notNorInsec = -1;
-            RayTracein3DPlane(boundary3, new Line3(cur_p, cutPlane.Normal()), cutPlane, cur_p, out norInsec, out notNorInsec);
-            Insection1 = boundary3[norInsec];
-            Insection2 = boundary3[notNorInsec];
+            MyVector3 tangential1 = new MyVector3(1, 1, 1);
+            MyVector3 tangential2 = new MyVector3(1, 1, 1);
 
-            MyVector3 setPoint = boundary3[1];
-            MyVector3 setNormal = GetLocalTangential(1, boundary3);
-            setLine = new Line3(setPoint, setNormal);
-            this.view.Refresh();
+            List<MyCircle> CircleLists = new List<MyCircle>();
+            CircleLists.Add(topCircle);     // Fix first circle
+
+            int iter = 0;
+            double r = double.MaxValue;
+            System.Console.WriteLine(Insection1.Dot(tangential2));
+            System.Console.WriteLine(Math.Cos(2.0 / 3.0 * Math.PI));
+            int MaxInter = 10000;
+
+            GeneratedCenters = new List<MyVector3>();
+
+            while (--MaxInter > 0) //
+            {
+                if (Insection1 == Insection2)                                       // 交点一直保持相同
+                {
+                    System.Console.WriteLine("Warning: Insection is same!");        // 半径过小
+                    break;
+                }
+                if (cur_dire.Dot(cur_dire_new) < 0)                                 // 移动方向反向
+                {
+                    System.Console.WriteLine("Warning: Move Direction！");
+                    break;
+                }
+                if (cur_p + offset * cur_dire == cur_p_new)                         // 中心点没有移动
+                {
+                    System.Console.WriteLine("Warning: Center not move!");
+                    break;
+                }
+                if (tangential1.Dot(tangential2) < Math.Cos(2.0 / 3.0 * Math.PI))   //切线相向
+                {
+                    System.Console.WriteLine("Warning: tangential get oppsite direction!");
+                    break;
+                }
+                if (r < 0.0001)
+                {
+                    System.Console.WriteLine("Warning: Radius is too small!");      // 半径过小
+                    break;
+                }
+                //if (MyVector3.Distance(cur_p, cur_p_new) )
+                //{
+                //    System.Console.WriteLine("Warning: Radius is too small!");    // 半径过小
+                //    break;
+                //}
+
+                if (iter != 0)
+                {
+                    cur_dire = cur_dire_new;
+                    cur_p = cur_p_new + offset * cur_dire;
+                    CircleLists.Add(new MyCircle(cur_p, r, cur_dire));
+                }
+
+                setdirecLine = new Line3(cur_p, cur_dire);
+                // Step1: Get IntersectionPoitn
+                RayTracein3DPlane(boundary3, cur_p, cur_dire, sectionPlane.Normal(), out norInsec, out notNorInsec);
+                // Step2 : Get Two Local Tangential
+                Insection1 = boundary3[norInsec];
+                Insection2 = boundary3[notNorInsec];
+                tangential1 = GetLocalTangential(norInsec, boundary3, cur_dire);
+                tangential2 = GetLocalTangential(notNorInsec, boundary3, cur_dire);
+
+                setLine1 = new Line3(Insection1, tangential1);
+                setLine2 = new Line3(Insection2, tangential2);
+
+                // Step3 : Get New Cur Direction and Cur Point
+                cur_dire_new = (tangential1 + tangential2) / 2;
+                RayTracein3DPlane(boundary3, cur_p, cur_dire_new, sectionPlane.Normal(), out norInsec, out notNorInsec);
+                cur_p_new = (boundary3[norInsec] + boundary3[notNorInsec]) / 2;
+                r = 0.5 * MyVector3.Distance(boundary3[norInsec], boundary3[notNorInsec]);
+                GeneratedCenters.Add(cur_p);
+
+                iter++;
+                this.view.Refresh();
+
+                //System.Console.WriteLine(r);
+            }
+
+            FittingCentersCurve(GeneratedCenters);
+
+            CurveCyliner = new SweepMesh(CircleLists);
         }
 
-        private MyVector3 GetLocalTangential(int p, List<MyVector3> boundary3)
+        private void FittingCentersCurve(List<MyVector3> centers)
+        //private List<MyVector3> FittingCentersCurve(List<MyVector3> centers)
+        {
+            // sparse item
+            //alglib.sparsematrix s;
+            //alglib.sparsecreate(2, 2, out s);
+            //alglib.sparseset(s, 0, 0, 2.0);
+            //alglib.sparseset(s, 1, 1, 1.0);
+            //alglib.sparseset(s, 0, 1, 1.0);
+            //alglib.sparseadd(s, 1, 1, 4.0);
+            //alglib.sparseconverttocrs(s);
+
+            // Build A
+            double[,] a = new double[,] { { 1, -1 }, { 1, 1 } };
+            for (int i = 0; i < centers.Count; i++)
+            {
+                for (int j = 0; j < 3; i++)
+                {
+                    
+                }
+            }
+            alglib.rmatrixsolve();
+
+
+            int info;
+            alglib.matinvreport rep;
+            alglib.rmatrixinverse(ref a, out info, out rep);
+
+            System.Console.ReadLine();
+            //alglib.rmatrixinverse(s,s)
+            alglib.sparsemv(s, x, ref y);
+
+        }
+
+        private List<MyVector2> ExtractOutline(Image<Gray, byte> imgs, List<MyVector2> topOutline)
+        {
+            double lineDistTheshold = 5;
+            List<MyVector2> ObjectOutline = GetBoundaryPoints(edgeImage);
+            List<MyVector2> Boundary2 = new List<MyVector2>();
+            foreach (var p_obj in ObjectOutline)
+            {
+                bool IsColosed = false;
+                foreach (var p_top in topOutline)
+                {
+                    if (MyVector2.Distance(p_obj, p_top) < lineDistTheshold)
+                    {
+                        IsColosed = true;
+                    }
+                }
+                if (!IsColosed)
+                {
+                    Boundary2.Add(p_obj);
+                }
+            }
+            return Boundary2;
+        }
+
+        private MyVector3 GetLocalTangential(int p, List<MyVector3> boundary3, MyVector3 curDir)
         {
             // Get Nearnest Pointss
             List<NearPoint> nearPs = new List<NearPoint>();
@@ -566,7 +705,7 @@ namespace SmartCanvas
             }
 
             // Fit Line with k nearest points
-            int k = 10;
+            int k = 100;
             List<NearPoint> kNearPs = (from a in nearPs orderby a.dist ascending select a).Take(k).ToList();
             List<MyVector3> kNearPv = new List<MyVector3>();
             foreach (var kNearP in kNearPs)
@@ -576,8 +715,12 @@ namespace SmartCanvas
             var fitline = new RansacLine3d(0.00005, 0.9);
             Line3 line3d = fitline.Estimate(kNearPv);
 
-            // Get Local Tangential
-            return line3d.dir;
+            // Check Local Tangential Direction
+            if (line3d.dir.Dot(curDir) < 0)
+            {
+                line3d.dir = -1 * line3d.dir;
+            }
+            return line3d.dir.Normalize();
         }
 
         private struct NearPoint
@@ -587,17 +730,23 @@ namespace SmartCanvas
             public int index;
         }
 
-        private void RayTracein3DPlane(List<MyVector3> points, Line3 ray, MyPlane CutPlane, MyVector3 curp, out int norInsec, out int notNorInsec)
+        private void RayTracein3DPlane(List<MyVector3> points, MyVector3 curp, MyVector3 curdire, MyVector3 sectionPlaneNormal, out int norInsec, out int notNorInsec)
         {
+            // Param
+            double insecPs_Dist_theshold = 0.01;
+            double insecP_DistBetweenRay_theshold = 20;
+
+            MyVector3 cutNormal = sectionPlaneNormal.Cross(curdire).Normalize();
+            ray = new Line3(curp, cutNormal);
+
             norInsec = -1; // Normal side
             notNorInsec = -1; // Not Normal side
             double dist_left = double.MaxValue;
             double dist_right = double.MaxValue;
-
             for (int i = 0; i < points.Count; i++)
             {
                 double dist_temp = ray.DistanceToLine(points[i]);
-                if ((points[i] - curp).Dot(CutPlane.Normal()) > 0)
+                if ((points[i] - curp).Dot(cutNormal) > 0)
                 {
                     // Normal side
                     if (dist_left > dist_temp)
@@ -616,8 +765,33 @@ namespace SmartCanvas
                     }
                 }
             }
-        }
 
+            if (MyVector3.Distance(points[norInsec], points[notNorInsec]) < insecPs_Dist_theshold)
+            {
+                // this two intersection is too close, so let them become same one.s
+                norInsec = notNorInsec;
+            }
+
+            if (ray.DistanceToLine(points[norInsec]) > insecP_DistBetweenRay_theshold
+                || ray.DistanceToLine(points[notNorInsec]) > insecP_DistBetweenRay_theshold)
+            {
+                // this two intersection is too close, so let them become same one.s
+                norInsec = notNorInsec;
+            }
+
+            if (norInsec == -1)
+            {
+                norInsec = notNorInsec;
+            }
+            else if (notNorInsec == -1)
+            {
+                notNorInsec = norInsec;
+            }
+            else if (norInsec == -1 && notNorInsec == -1)
+            {
+                System.Console.WriteLine("Error: Ray Tracein3DPlane, no intersection points");
+            }
+        }
 
         public void BuildBoundaryPoints(List<MyVector2> Boundary2)
         {

@@ -240,15 +240,39 @@ namespace SmartCanvas
         private void DrawHighlights3D()
         {
             GL.Disable(EnableCap.Lighting);
-            //topCircle.DrawCapped(Color.Salmon);
+            topCircle.DrawCapped(Color.Salmon);
 
 
             if (this.body != null)
                 body.Draw(Color.CornflowerBlue);
 
-            if (this.setLine != null)
-                setLine.Draw(Color.Blue, 3.0f, 0.5);
+            if (this.setLine1 != null)
+                setLine1.Draw(Color.Blue, 3.0f, 0.5);
 
+            if (this.setLine2 != null)
+                setLine2.Draw(Color.Blue, 3.0f, 0.5);
+
+            if (this.setdirecLine != null)
+                setdirecLine.Draw(Color.Red, 3.0f, 0.5);
+
+            if (this.ray != null)
+                ray.Draw(Color.Green, 3.0f, 0.5);
+
+            if (this.CurveCyliner != null)
+                CurveCyliner.Draw(Color.Green);
+
+            if (this.GeneratedCenters != null)
+            {
+                GL.PointSize(1.0f);
+                GL.Begin(PrimitiveType.Points);
+
+                foreach (MyVector3 p in this.GeneratedCenters)
+                {
+                    GL.Color3(Color.Yellow);
+                    GL.Vertex3(p.ToArray());
+                }
+                GL.End();
+            }
 
             GL.PointSize(1.0f);
             GL.Begin(PrimitiveType.Points);
@@ -285,6 +309,9 @@ namespace SmartCanvas
             GL.Vertex3(Insection2.ToArray());
             GL.Color3(Color.Red);
             GL.Vertex3(Insection1.ToArray());
+            
+            GL.Color3(Color.Red);
+            GL.Vertex3(cur_p.ToArray());
             GL.End();
 
 

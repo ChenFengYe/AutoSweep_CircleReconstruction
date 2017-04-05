@@ -134,7 +134,7 @@ namespace MyGeometry
             //        double minDis = double.MaxValue;
             //        for (int i = mpIdx; i < mpIdx + N; i++)
             //        {
-            //            // must be counterclockwise, and when point is on the left of the segment, dis > 0
+            //            // must be countercwise, and when point is on the left of the segment, dis > 0
             //            double tmpDis = bottomEdges[i].GetDistance(mv2) * -bottomEdges[i].GetPointLocation(mv2);
             //            if (Math.Abs(minDis) > Math.Abs(tmpDis))
             //            {

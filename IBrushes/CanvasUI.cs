@@ -146,6 +146,7 @@ namespace SmartCanvas
         }
         public MyVector3 UnProject(double winx, double winy, double winz)
         {
+            if (this.glProjector == null) this.ObtainGLProjector();
             winy = this.view.Height - winy; // win to opengl
             return this.glProjector.UnProject(winx, winy, winz);
         }
