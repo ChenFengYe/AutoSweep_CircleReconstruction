@@ -442,8 +442,7 @@ namespace SmartCanvas
 
         public void ReadTopCircle(string filename)
         {
-            //if (topCircle == null)
-                topCircle = new MyCircle(filename);
+            topCircle = new MyCircle(filename);
         }
 
         //---------------------------------------------------------------------------
@@ -648,14 +647,14 @@ namespace SmartCanvas
             //alglib.sparseconverttocrs(s);
 
             // Build A
-            //double[,] a = new double[,] { { 1, -1 }, { 1, 1 } };
-            //for (int i = 0; i < centers.Count; i++)
-            //{
-            //    for (int j = 0; j < 3; i++)
-            //    {
-
-            //    }
-            //}
+            double[,] a = new double[,] { { 1, -1 }, { 1, 1 } };
+            for (int i = 0; i < centers.Count; i++)
+            {
+                for (int j = 0; j < 3; i++)
+                {
+                    
+                }
+            }
             //alglib.rmatrixsolve();
 
 

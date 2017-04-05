@@ -170,8 +170,8 @@ namespace SmartCanvas
                     int s = i * n + j, t = i * n + j + 1;
                     int p = (i + 1) * n + j, q = (i + 1) * n + j + 1;
                     // s-p-t, t-p-q
-                    findices.Add(s); findices.Add(p); findices.Add(t);
-                    findices.Add(t); findices.Add(p); findices.Add(q);
+                    findices.Add(s); findices.Add(t); findices.Add(p);
+                    findices.Add(t); findices.Add(q); findices.Add(p);
                 }
             }
             this.objectmesh = new Mesh(vertices, findices);
