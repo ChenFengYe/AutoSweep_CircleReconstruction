@@ -91,7 +91,6 @@ E:\ObjectSnapping\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.csproj.
 E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\bin\Release\IBrushes.exe.config
 E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.exe
 E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.pdb
-E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.csprojResolveAssemblyReference.cache
 E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\obj\x86\Release\SmartCanvas.FormAirBrush.resources
 E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.Properties.Resources.resources
 E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\obj\x86\Release\SmartCanvas.SketchView.resources
@@ -113,4 +112,3 @@ E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\bin\Release
 E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\bin\Release\Loyc.Utilities.xml
 E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\bin\Release\ZedGraph.xml
 D:\Desktop\CircleReconstruction\IBrushes\bin\Release\ZedGraph.xml
-E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\bin\Release\Microsoft.Kinect.xml

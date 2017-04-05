@@ -999,24 +999,37 @@ namespace MyGeometry
         }
         public void DrawSmoothShaded(Color c)
         {
+            GL.Disable(EnableCap.Blend);
             GL.Enable(EnableCap.DepthTest);
+            GL.Clear(ClearBufferMask.DepthBufferBit);
             GL.ShadeModel(ShadingModel.Smooth);
+            GL.Enable(EnableCap.ColorMaterial);
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
             GL.Enable(EnableCap.Lighting);
             GL.Enable(EnableCap.Normalize);
 
             GL.Color3(c);
+            GL.Begin(PrimitiveType.Triangles);
             for (int i = 0, j = 0; i < this.faceCount; i++, j += 3)
             {
-                GL.Begin(PrimitiveType.Triangles);
-                GL.Normal3(VertexPos[faceIndex[j] * 3], VertexPos[faceIndex[j] * 3 + 1], VertexPos[faceIndex[j] * 3 + 2]);
+                //GL.Normal3(faceNormal[j], faceNormal[j + 1], faceNormal[j + 2]);
+                GL.Normal3(VertexNormal[faceIndex[j] * 3], VertexNormal[faceIndex[j] * 3 + 1], VertexNormal[faceIndex[j] * 3 + 2]);
                 GL.Vertex3(VertexPos[faceIndex[j] * 3], VertexPos[faceIndex[j] * 3 + 1], VertexPos[faceIndex[j] * 3 + 2]);
+                
+                //GL.Normal3(faceNormal[j], faceNormal[j + 1], faceNormal[j + 2]);
+                GL.Normal3(VertexNormal[faceIndex[j + 1] * 3], VertexNormal[faceIndex[j + 1] * 3 + 1], VertexNormal[faceIndex[j + 1] * 3 + 2]);
                 GL.Vertex3(VertexPos[faceIndex[j + 1] * 3], VertexPos[faceIndex[j + 1] * 3 + 1], VertexPos[faceIndex[j + 1] * 3 + 2]);
+                
+                //GL.Normal3(faceNormal[j], faceNormal[j + 1], faceNormal[j + 2]);
+                GL.Normal3(VertexNormal[faceIndex[j + 2] * 3], VertexNormal[faceIndex[j + 2] * 3 + 1], VertexNormal[faceIndex[j + 2] * 3 + 2]);
                 GL.Vertex3(VertexPos[faceIndex[j + 2] * 3], VertexPos[faceIndex[j + 2] * 3 + 1], VertexPos[faceIndex[j + 2] * 3 + 2]);
-                GL.End();
             }
+            GL.End();
             GL.Disable(EnableCap.Lighting);
+            GL.Disable(EnableCap.Normalize);
             GL.Disable(EnableCap.DepthTest);
+            GL.Enable(EnableCap.Blend);
+
         }
         public void DrawTransparent(Color c, byte opacity = 92)
         {

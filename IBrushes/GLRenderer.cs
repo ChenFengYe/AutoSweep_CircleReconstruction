@@ -24,6 +24,10 @@ namespace SmartCanvas
 
         public static void InitGlMaterialLights()
         {
+
+            GL.Enable(EnableCap.ColorMaterial);
+            // GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
+
             // Material
             SetDefaultMaterial();
 
@@ -42,27 +46,29 @@ namespace SmartCanvas
         }
         private static void SetDefaultLight()
         {
-            float[] pos1 = new float[4] { -5f, -5f, -5f, 0.0f };
-            float[] pos2 = new float[4] { 5f, -5f, -5f, 0.0f };
-            float[] pos3 = new float[4] { 0.0f, 0.0f, -5f, 0.0f };
+            float[] pos1 = new float[4] { 0f, -10f, -10f, 0.0f };
+            float[] pos2 = new float[4] { 0f, 5f, -5f, 0.0f };
             float[] col1 = new float[4] { 1.0f, 1.0f, 1.0f, 1.0f };
-            float[] col2 = new float[4] { 1.0f, 1.0f, 1.0f, 1.0f };
-            float[] col3 = new float[4] { 1.0f, 1.0f, 1.0f, 1.0f };
+            //float[] col2 = new float[4] { 1.0f, 1.0f, 1.0f, 1.0f };
+            //float[] col3 = new float[4] { 1.0f, 1.0f, 1.0f, 1.0f };
 
             GL.Enable(EnableCap.Light0);
             GL.Light(LightName.Light0, LightParameter.Position, pos1);
+            GL.Light(LightName.Light0, LightParameter.Ambient, col1);
             GL.Light(LightName.Light0, LightParameter.Diffuse, col1);
             GL.Light(LightName.Light0, LightParameter.Specular, col1);
 
             //GL.Enable(EnableCap.Light1);
             //GL.Light(LightName.Light1, LightParameter.Position, pos2);
-            //GL.Light(LightName.Light1, LightParameter.Diffuse, col2);
-            //GL.Light(LightName.Light1, LightParameter.Specular, col2);
+            //GL.Light(LightName.Light1, LightParameter.Ambient, col1);
+            //GL.Light(LightName.Light1, LightParameter.Diffuse, col1);
+            //GL.Light(LightName.Light1, LightParameter.Specular, col1);
 
             //GL.Enable(EnableCap.Light2);
             //GL.Light(LightName.Light2, LightParameter.Position, pos3);
-            //GL.Light(LightName.Light2, LightParameter.Diffuse, col3);
-            //GL.Light(LightName.Light2, LightParameter.Specular, col3);
+            //GL.Light(LightName.Light2, LightParameter.Ambient, col1);
+            //GL.Light(LightName.Light2, LightParameter.Diffuse, col1);
+            ////GL.Light(LightName.Light2, LightParameter.Specular, col1);
 
         }
         private static void SetDefaultMaterial()

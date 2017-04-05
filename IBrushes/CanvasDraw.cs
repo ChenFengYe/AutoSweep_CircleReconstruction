@@ -89,8 +89,8 @@ namespace SmartCanvas
 
             // draw highlights
             this.DrawHighlights2D();
+            this.DrawLight();
 
-            // this.DrawLight();
 
             GL.PopMatrix();
             GL.PopMatrix();
@@ -153,6 +153,7 @@ namespace SmartCanvas
 
             // draw highlights
             this.DrawHighlights3D();
+            this.DrawLight();
 
             GL.Disable(EnableCap.LineSmooth);
             GL.Disable(EnableCap.PointSmooth);
@@ -259,7 +260,7 @@ namespace SmartCanvas
                 ray.Draw(Color.Green, 3.0f, 0.5);
 
             if (this.CurveCyliner != null)
-                CurveCyliner.Draw(Color.Green);
+                CurveCyliner.Draw(Color.CornflowerBlue);
 
             if (this.GeneratedCenters != null)
             {
@@ -309,7 +310,7 @@ namespace SmartCanvas
             GL.Vertex3(Insection2.ToArray());
             GL.Color3(Color.Red);
             GL.Vertex3(Insection1.ToArray());
-            
+
             GL.Color3(Color.Red);
             GL.Vertex3(cur_p.ToArray());
             GL.End();

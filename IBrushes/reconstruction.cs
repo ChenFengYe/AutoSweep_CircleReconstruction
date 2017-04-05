@@ -442,7 +442,8 @@ namespace SmartCanvas
 
         public void ReadTopCircle(string filename)
         {
-            topCircle = new MyCircle(filename);
+            //if (topCircle == null)
+                topCircle = new MyCircle(filename);
         }
 
         //---------------------------------------------------------------------------
@@ -629,7 +630,7 @@ namespace SmartCanvas
                 //System.Console.WriteLine(r);
             }
 
-            FittingCentersCurve(GeneratedCenters);
+            //FittingCentersCurve(GeneratedCenters);
 
             CurveCyliner = new SweepMesh(CircleLists);
         }
@@ -647,24 +648,24 @@ namespace SmartCanvas
             //alglib.sparseconverttocrs(s);
 
             // Build A
-            double[,] a = new double[,] { { 1, -1 }, { 1, 1 } };
-            for (int i = 0; i < centers.Count; i++)
-            {
-                for (int j = 0; j < 3; i++)
-                {
-                    
-                }
-            }
-            alglib.rmatrixsolve();
+            //double[,] a = new double[,] { { 1, -1 }, { 1, 1 } };
+            //for (int i = 0; i < centers.Count; i++)
+            //{
+            //    for (int j = 0; j < 3; i++)
+            //    {
+
+            //    }
+            //}
+            //alglib.rmatrixsolve();
 
 
-            int info;
-            alglib.matinvreport rep;
-            alglib.rmatrixinverse(ref a, out info, out rep);
+            //int info;
+            //alglib.matinvreport rep;
+            //alglib.rmatrixinverse(ref a, out info, out rep);
 
-            System.Console.ReadLine();
-            //alglib.rmatrixinverse(s,s)
-            alglib.sparsemv(s, x, ref y);
+            //System.Console.ReadLine();
+            ////alglib.rmatrixinverse(s,s)
+            //alglib.sparsemv(s, x, ref y);
 
         }
 
