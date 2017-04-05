@@ -226,8 +226,8 @@ namespace SmartCanvas
         {
             if (this.objectmesh != null)
             {
-                //this.objectmesh.DrawSmoothShaded(c);
-                this.objectmesh.DrawTransparent(c);
+                this.objectmesh.DrawSmoothShaded(c);
+                //this.objectmesh.DrawTransparent(c);
             }
         }
     }

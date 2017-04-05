@@ -45,7 +45,6 @@ D:\Desktop\deep-clean-code\CircleReconstruction\IBrushes\obj\x86\Release\IBrushe
 D:\Desktop\CircleReconstruction\IBrushes\bin\Release\IBrushes.exe.config
 D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.exe
 D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.pdb
-D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.csprojResolveAssemblyReference.cache
 D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\SmartCanvas.FormAirBrush.resources
 D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.Properties.Resources.resources
 D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\SmartCanvas.SketchView.resources
@@ -114,3 +113,4 @@ E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\bin\Release
 E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\bin\Release\ZedGraph.xml
 D:\Desktop\CircleReconstruction\IBrushes\bin\Release\ZedGraph.xml
 E:\ObjectSnapping\CircleReconstruction\CircleReconstruction\IBrushes\bin\Release\Microsoft.Kinect.xml
+D:\Desktop\CircleReconstruction\IBrushes\obj\x86\Release\IBrushes.csprojResolveAssemblyReference.cache
