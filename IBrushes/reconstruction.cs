@@ -563,6 +563,9 @@ namespace SmartCanvas
             int MaxInter = 10000;
 
             GeneratedCenters = new List<MyVector3>();
+            List<double> radius = new List<double>();
+            List<double> weights = new List<double>();
+            List<MyVector3> dires = new List<MyVector3>();
 
             while (--MaxInter > 0) //
             {
@@ -602,9 +605,15 @@ namespace SmartCanvas
                     cur_dire = cur_dire_new;
                     cur_p = cur_p_new + offset * cur_dire;
                     CircleLists.Add(new MyCircle(cur_p, r, cur_dire));
+
+                    // Get Data for Fit
+                    double weight = Math.Abs(cur_dire_new.Dot(cur_dire));
+                    GeneratedCenters.Add(cur_p_new);
+                    weights.Add(weight);
+                    radius.Add(r);
+                    dires.Add(cur_dire);
                 }
 
-                setdirecLine = new Line3(cur_p, cur_dire);
                 // Step1: Get IntersectionPoitn
                 RayTracein3DPlane(boundary3, cur_p, cur_dire, sectionPlane.Normal(), out norInsec, out notNorInsec);
                 // Step2 : Get Two Local Tangential
@@ -613,6 +622,8 @@ namespace SmartCanvas
                 tangential1 = GetLocalTangential(norInsec, boundary3, cur_dire);
                 tangential2 = GetLocalTangential(notNorInsec, boundary3, cur_dire);
 
+                // Visualization
+                setdirecLine = new Line3(cur_p, cur_dire);
                 setLine1 = new Line3(Insection1, tangential1);
                 setLine2 = new Line3(Insection2, tangential2);
 
@@ -621,51 +632,137 @@ namespace SmartCanvas
                 RayTracein3DPlane(boundary3, cur_p, cur_dire_new, sectionPlane.Normal(), out norInsec, out notNorInsec);
                 cur_p_new = (boundary3[norInsec] + boundary3[notNorInsec]) / 2;
                 r = 0.5 * MyVector3.Distance(boundary3[norInsec], boundary3[notNorInsec]);
-                GeneratedCenters.Add(cur_p);
 
                 iter++;
                 this.view.Refresh();
-
-                //System.Console.WriteLine(r);
             }
 
-            FittingCentersCurve(GeneratedCenters);
+            // Fit centers and radius;
+            GeneratedCenters = FittingCentersCurve(GeneratedCenters, weights);
+            radius = FittRadius(radius);
+
+            // ReBuild Object
+            CircleLists.Clear();
+            CircleLists.Add(topCircle);         // Fix first circle
+            for (int i = 0; i < GeneratedCenters.Count; i++)
+            {
+                CircleLists.Add(new MyCircle(GeneratedCenters[i], radius[i], dires[i]));
+            }
 
             CurveCyliner = new SweepMesh(CircleLists);
         }
 
-        private void FittingCentersCurve(List<MyVector3> centers)
-        //private List<MyVector3> FittingCentersCurve(List<MyVector3> centers)
+        private List<double> FittRadius(List<double> radius)
         {
             // sparse item
-            //alglib.sparsematrix s;
-            //alglib.sparsecreate(2, 2, out s);
-            //alglib.sparseset(s, 0, 0, 2.0);
-            //alglib.sparseset(s, 1, 1, 1.0);
-            //alglib.sparseset(s, 0, 1, 1.0);
-            //alglib.sparseadd(s, 1, 1, 4.0);
-            //alglib.sparseconverttocrs(s);
+            alglib.sparsematrix a;
+            alglib.sparsecreate(radius.Count, radius.Count, out a);
+            double[] b = new double[radius.Count];
 
-            // Build A
-            double[,] a = new double[,] { { 1, -1 }, { 1, 1 } };
+            for (int i = 0; i < radius.Count; i++)
+            {
+                // Build A
+                for (int j = 0; j < radius.Count; j++)
+                {
+                    if (i == j)
+                        alglib.sparseset(a, i, j, 2.0);
+                    if (i == j - 1)
+                        alglib.sparseset(a, i, j, -1.0);
+                    if (i == j - 2)
+                        alglib.sparseset(a, i, j, -1.0);
+
+                    // handle the boundary
+                    if (i == radius.Count - 2 && i == j)
+                        alglib.sparseset(a, i, j, 1.0);
+                    if (i == radius.Count - 2 && i == j - 1)
+                        alglib.sparseset(a, i, j, -1.0);
+                    if (i == radius.Count - 1 && i == j)
+                        alglib.sparseset(a, i, j, 0.0);
+                }
+
+                // BUild b_x b_y b_z
+                b[i] = 0;
+            }
+            alglib.sparseconverttocrs(a);
+
+            alglib.linlsqrstate s;
+            alglib.linlsqrreport rep;
+            alglib.linlsqrcreate(radius.Count, radius.Count, out s);
+
+            double[] FitedR;
+            alglib.linlsqrsolvesparse(s, a, b);
+            alglib.linlsqrresults(s, out FitedR, out rep);
+
+            // Build new vecter
+            List<double> FitedRs = new List<double>();
+            for (int i = 0; i < radius.Count; i++)
+            {
+                FitedRs.Add(FitedR[i]);
+            }
+            return FitedRs;
+        }
+
+        private List<MyVector3> FittingCentersCurve(List<MyVector3> centers, List<double> weights)
+        {
+            // sparse item
+            alglib.sparsematrix a;
+            alglib.sparsecreate(centers.Count, centers.Count, out a);
+            double[] b_x = new double[centers.Count];
+            double[] b_y = new double[centers.Count];
+            double[] b_z = new double[centers.Count];
+
             for (int i = 0; i < centers.Count; i++)
             {
-                for (int j = 0; j < 3; i++)
+                // Build A
+                for (int j = 0; j < centers.Count; j++)
                 {
+                    if (i == j)
+                        alglib.sparseset(a, i, j, 2.0 + weights[i]);
+                    if (i == j - 1)
+                        alglib.sparseset(a, i, j, -1.0);
+                    if (i == j - 2)
+                        alglib.sparseset(a, i, j, -1.0);
                     
+                    // handle the boundary
+                    if (i == centers.Count -2 && i == j)
+                        alglib.sparseset(a, i, j, 1.0 + weights[i]);
+                    if (i == centers.Count -2 && i == j - 1)
+                        alglib.sparseset(a, i, j, -1.0);
+                    if (i == centers.Count - 1 && i == j)
+                        alglib.sparseset(a, i, j, weights[i]);
                 }
+
+                // BUild b_x b_y b_z
+                b_x[i] = centers[i][0] * weights[i];
+                b_y[i] = centers[i][1] * weights[i];
+                b_z[i] = centers[i][2] * weights[i];
             }
-            alglib.rmatrixsolve();
 
+            alglib.sparseconverttocrs(a);
 
-            int info;
-            alglib.matinvreport rep;
-            alglib.rmatrixinverse(ref a, out info, out rep);
+            alglib.linlsqrstate s;
+            alglib.linlsqrreport rep;
+            alglib.linlsqrcreate(centers.Count, centers.Count, out s);
 
-            System.Console.ReadLine();
-            //alglib.rmatrixinverse(s,s)
-            alglib.sparsemv(s, x, ref y);
+            double[] centers_x;
+            alglib.linlsqrsolvesparse(s, a, b_x);
+            alglib.linlsqrresults(s, out centers_x, out rep);
 
+            double[] centers_y;
+            alglib.linlsqrsolvesparse(s, a, b_y);
+            alglib.linlsqrresults(s, out centers_y, out rep);
+
+            double[] centers_z;
+            alglib.linlsqrsolvesparse(s, a, b_z);
+            alglib.linlsqrresults(s, out centers_z, out rep);
+
+            // Build new vecter
+            List<MyVector3> FitedCenters = new List<MyVector3>();
+            for (int i = 0; i < centers.Count; i++)
+            {
+                FitedCenters.Add(new MyVector3(centers_x[i], centers_y[i], centers_z[i]));
+            }
+            return FitedCenters;
         }
 
         private List<MyVector2> ExtractOutline(Image<Gray, byte> imgs, List<MyVector2> topOutline)
