@@ -429,6 +429,12 @@ namespace SmartCanvas
                         }
                     }
                     break;
+                case Keys.P:
+                    {
+                        if (this.currCanvasEngine != null)
+                            this.currCanvasEngine.Snap("img");
+                    }
+                        break;
             }
         }
 

@@ -260,6 +260,12 @@ namespace SmartCanvas
 
             if (this.CurveCyliner != null)
                 CurveCyliner.Draw(Color.Green);
+            
+            if (this.test1 != null)
+                test1.Draw(Color.Gray);
+
+            if (this.test2 != null)
+                test2.Draw(Color.Gray);
 
             if (this.GeneratedCenters != null)
             {

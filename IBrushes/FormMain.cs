@@ -175,6 +175,11 @@ namespace SmartCanvas
             }
         }
 
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            this.sketchView.CurrCanvasEngine.IsOut_Debug = true;
+        }
+
     }
 }
 

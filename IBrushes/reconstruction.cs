@@ -477,28 +477,58 @@ namespace SmartCanvas
 
         public List<MyVector2> CurveFitting(List<MyVector2> points)
         {
+            //Console.WriteLine("Fit curve");
+            //double[] x = new double[points.Count];
+            //double[] y = new double[points.Count];
+
+            //for (int i = 0; i < points.Count; i++)
+            //{
+            //    x[i] = points[i].x;
+            //    y[i] = points[i].y;
+            //}
+
+            //int outinfo = 0;
+
+            //alglib.spline1dfitreport rep;
+            //alglib.spline1dinterpolant p;
+            //alglib.spline1dfitpenalized(x, y, points.Count, 2.0, out outinfo, out p, out rep);
+
+            //List<MyVector2> output = new List<MyVector2>();
+            //for (int i = 0; i < p.innerobj.n; i++)
+            //{
+            //    output.Add(new MyVector2(p.innerobj.x[i], alglib.spline1dcalc(p, p.innerobj.x[i])));
+            //}
+            //return output;
+            
             Console.WriteLine("Fit curve");
-            double[] x = new double[points.Count];
-            double[] y = new double[points.Count];
+            double[,] xy0 = new double[points.Count, 3];
 
             for (int i = 0; i < points.Count; i++)
             {
-                x[i] = points[i].x;
-                y[i] = points[i].y;
+                xy0[i, 0] = points[i].x;
+                xy0[i, 1] = 0;
+                xy0[i, 2] = points[i].y;
             }
 
-            int outinfo = 0;
-            alglib.spline1dfitreport rep;
-            alglib.spline1dinterpolant p;
-            alglib.spline1dfitpenalized(x, y, points.Count, 2.0, out outinfo, out p, out rep);
+            alglib.rbfmodel model;
+            alglib.rbfreport rep;
+
+            alglib.rbfcreate(2, 1, out model);
+            alglib.rbfsetpoints(model, xy0);
+
+            alglib.rbfsetalgomultilayer(model, 100, 1, 1.0e-3);
+            alglib.rbfbuildmodel(model, out rep);
 
             List<MyVector2> output = new List<MyVector2>();
-            for (int i = 0; i < p.innerobj.n; i++)
-            {
-                output.Add(new MyVector2(p.innerobj.x[i], alglib.spline1dcalc(p, p.innerobj.x[i])));
-            }
-            return output;
+            for (int i = 0; i < points.Count; i++)
+			{
+                double x = points[i].x;
+                double zero = 0;
+                double y = alglib.rbfcalc2(model, x, zero);
+                output.Add(new MyVector2(x, y));
+			}
 
+            return output;
         }
 
         //---------------------------------------------------------------------------
@@ -518,6 +548,11 @@ namespace SmartCanvas
         SweepMesh CurveCyliner = null;
         List<MyVector3> GeneratedCenters = null;
         double epsilon = 0.000001;
+        public bool IsOut_Debug = false;
+
+        Line3 test1 = null;
+        Line3 test2 = null;
+
         public void CylinderSnapping()
         {
             // Get Boundary2
@@ -526,9 +561,12 @@ namespace SmartCanvas
             List<MyVector2> boundary2 = ExtractOutline(edgeImage, boundaryPoints_2d);
 
             // Project  2D edge points
+            //topCircle = new MyCircle(topCircle.Center, topCircle.Radius, -topCircle.Normal);
             MyVector3 normal = topCircle.Normal.Cross(this.camera.target).Cross(topCircle.Normal);
             MyPlane sectionPlane = new MyPlane(topCircle.Center, normal);
             boundary3 = Proj2dToPlane(sectionPlane, boundary2);
+
+            topCircle = CiriFixTopCircle(topCircle, boundary3);
 
             // UpdateCircleNormal
             //        foreach (var pbondary3 in pbondary3)
@@ -560,7 +598,7 @@ namespace SmartCanvas
             double r = double.MaxValue;
             System.Console.WriteLine(Insection1.Dot(tangential2));
             System.Console.WriteLine(Math.Cos(2.0 / 3.0 * Math.PI));
-            int MaxInter = 10000;
+            int MaxInter = 1000;
 
             GeneratedCenters = new List<MyVector3>();
             List<double> radius = new List<double>();
@@ -584,6 +622,26 @@ namespace SmartCanvas
                     System.Console.WriteLine("Warning: Center not move!");
                     break;
                 }
+
+                RayTracein3DPlane(boundary3,
+                    cur_p_new,
+                    cur_dire_new.Cross(sectionPlane.Normal()),
+                    sectionPlane.Normal(),
+                    out norInsec,
+                    out notNorInsec);
+                System.Console.WriteLine("{0} , {1}",
+                    MyVector3.Distance(boundary3[norInsec], cur_p_new),
+                    MyVector3.Distance(boundary3[notNorInsec], cur_p_new));
+                test1 = new Line3(boundary3[norInsec], cur_p_new - boundary3[norInsec]);
+                test2 = new Line3(boundary3[notNorInsec], cur_p_new - boundary3[notNorInsec]);
+
+                if (MyVector3.Distance(boundary3[norInsec], cur_p_new) < topCircle.Radius / 20    // close to bottom
+                    || MyVector3.Distance(boundary3[notNorInsec], cur_p_new) < topCircle.Radius / 20)
+                {
+                    System.Console.WriteLine("Warning: Close to bottom!");
+                    break;
+                }
+
                 if (tangential1.Dot(tangential2) < Math.Cos(2.0 / 3.0 * Math.PI))   //切线相向
                 {
                     System.Console.WriteLine("Warning: tangential get oppsite direction!");
@@ -602,6 +660,9 @@ namespace SmartCanvas
 
                 if (iter != 0)
                 {
+                    //offset = 1 / MyVector3.Distance(cur_p, cur_p_new) * 0.000001 + 0.5 * offset;
+                    offset = topCircle.Radius / 20;
+                    //System.Console.WriteLine("{0}", offset);
                     cur_dire = cur_dire_new;
                     cur_p = cur_p_new + offset * cur_dire;
                     CircleLists.Add(new MyCircle(cur_p, r, cur_dire));
@@ -616,6 +677,7 @@ namespace SmartCanvas
 
                 // Step1: Get IntersectionPoitn
                 RayTracein3DPlane(boundary3, cur_p, cur_dire, sectionPlane.Normal(), out norInsec, out notNorInsec);
+
                 // Step2 : Get Two Local Tangential
                 Insection1 = boundary3[norInsec];
                 Insection2 = boundary3[notNorInsec];
@@ -639,7 +701,11 @@ namespace SmartCanvas
 
             // Fit centers and radius;
             GeneratedCenters = FittingCentersCurve(GeneratedCenters, weights);
-            radius = FittRadius(radius);
+            int inter = 1;
+            while (inter-- > 0)
+            {
+                radius = FittRadius(radius);
+            }
 
             // ReBuild Object
             CircleLists.Clear();
@@ -652,54 +718,80 @@ namespace SmartCanvas
             CurveCyliner = new SweepMesh(CircleLists);
         }
 
+        private MyCircle CiriFixTopCircle(MyCircle topCircle, List<MyVector3> boundary3)
+        {
+            MyVector3 boundary_mean = new MyVector3(0, 0, 0);
+            foreach (var p in boundary3)
+            {
+                boundary_mean += p;
+            }
+            boundary_mean /= boundary3.Count;
+            if (topCircle.Normal.Dot(boundary_mean - topCircle.Center) > 0)
+                return topCircle;
+            else
+                return new MyCircle(topCircle.Center, topCircle.Radius, -1.0 * topCircle.Normal);
+        }
         private List<double> FittRadius(List<double> radius)
         {
-            // sparse item
-            alglib.sparsematrix a;
-            alglib.sparsecreate(radius.Count, radius.Count, out a);
-            double[] b = new double[radius.Count];
-
+            List<MyVector2> tempR = new List<MyVector2>();
             for (int i = 0; i < radius.Count; i++)
             {
-                // Build A
-                for (int j = 0; j < radius.Count; j++)
-                {
-                    if (i == j)
-                        alglib.sparseset(a, i, j, 2.0);
-                    if (i == j - 1)
-                        alglib.sparseset(a, i, j, -1.0);
-                    if (i == j - 2)
-                        alglib.sparseset(a, i, j, -1.0);
-
-                    // handle the boundary
-                    if (i == radius.Count - 2 && i == j)
-                        alglib.sparseset(a, i, j, 1.0);
-                    if (i == radius.Count - 2 && i == j - 1)
-                        alglib.sparseset(a, i, j, -1.0);
-                    if (i == radius.Count - 1 && i == j)
-                        alglib.sparseset(a, i, j, 0.0);
-                }
-
-                // BUild b_x b_y b_z
-                b[i] = 0;
+                tempR.Add(new MyVector2(i, radius[i]));
             }
-            alglib.sparseconverttocrs(a);
+            tempR = CurveFitting(tempR);
 
-            alglib.linlsqrstate s;
-            alglib.linlsqrreport rep;
-            alglib.linlsqrcreate(radius.Count, radius.Count, out s);
-
-            double[] FitedR;
-            alglib.linlsqrsolvesparse(s, a, b);
-            alglib.linlsqrresults(s, out FitedR, out rep);
-
-            // Build new vecter
-            List<double> FitedRs = new List<double>();
-            for (int i = 0; i < radius.Count; i++)
+            radius.Clear();
+            foreach (var r in tempR)
             {
-                FitedRs.Add(FitedR[i]);
+                radius.Add(r[1]);
             }
-            return FitedRs;
+            return radius;
+            //// sparse item
+            //alglib.sparsematrix a;
+            //alglib.sparsecreate(radius.Count, radius.Count, out a);
+            //double[] b = new double[radius.Count];
+
+            //for (int i = 0; i < radius.Count; i++)
+            //{
+            //    // Build A
+            //    for (int j = 0; j < radius.Count; j++)
+            //    {
+            //        if (i == j)
+            //            alglib.sparseset(a, i, j, 2.0);
+            //        if (i == j - 1)
+            //            alglib.sparseset(a, i, j, -1.0);
+            //        if (i == j - 2)
+            //            alglib.sparseset(a, i, j, -1.0);
+
+            //        // handle the boundary
+            //        if (i == radius.Count - 2 && i == j)
+            //            alglib.sparseset(a, i, j, 1.0);
+            //        if (i == radius.Count - 2 && i == j - 1)
+            //            alglib.sparseset(a, i, j, -1.0);
+            //        if (i == radius.Count - 1 && i == j)
+            //            alglib.sparseset(a, i, j, 0.0);
+            //    }
+
+            //    // BUild b_x b_y b_z
+            //    b[i] = 0;
+            //}
+            //alglib.sparseconverttocrs(a);
+
+            //alglib.linlsqrstate s;
+            //alglib.linlsqrreport rep;
+            //alglib.linlsqrcreate(radius.Count, radius.Count, out s);
+
+            //double[] FitedR;
+            //alglib.linlsqrsolvesparse(s, a, b);
+            //alglib.linlsqrresults(s, out FitedR, out rep);
+
+            //// Build new vecter
+            //List<double> FitedRs = new List<double>();
+            //for (int i = 0; i < radius.Count; i++)
+            //{
+            //    FitedRs.Add(FitedR[i]);
+            //}
+            //return FitedRs;
         }
 
         private List<MyVector3> FittingCentersCurve(List<MyVector3> centers, List<double> weights)
@@ -722,11 +814,11 @@ namespace SmartCanvas
                         alglib.sparseset(a, i, j, -1.0);
                     if (i == j - 2)
                         alglib.sparseset(a, i, j, -1.0);
-                    
+
                     // handle the boundary
-                    if (i == centers.Count -2 && i == j)
+                    if (i == centers.Count - 2 && i == j)
                         alglib.sparseset(a, i, j, 1.0 + weights[i]);
-                    if (i == centers.Count -2 && i == j - 1)
+                    if (i == centers.Count - 2 && i == j - 1)
                         alglib.sparseset(a, i, j, -1.0);
                     if (i == centers.Count - 1 && i == j)
                         alglib.sparseset(a, i, j, weights[i]);
@@ -863,31 +955,41 @@ namespace SmartCanvas
                 }
             }
 
+            if (norInsec == -1)
+            {
+                norInsec = notNorInsec;
+                System.Console.WriteLine("Warining: norInsec == -1");
+                return;
+            }
+            else if (notNorInsec == -1)
+            {
+                notNorInsec = norInsec;
+                System.Console.WriteLine("Warining: notNorInsec == -1");
+                return;
+            }
+            else if (norInsec == -1 && notNorInsec == -1)
+            {
+                System.Console.WriteLine("Error: Ray Tracein3DPlane, no intersection points");
+                return;
+            }
+
             if (MyVector3.Distance(points[norInsec], points[notNorInsec]) < insecPs_Dist_theshold)
             {
                 // this two intersection is too close, so let them become same one.s
+                System.Console.WriteLine("Warining: two intersection is too close");
                 norInsec = notNorInsec;
+                return;
             }
 
             if (ray.DistanceToLine(points[norInsec]) > insecP_DistBetweenRay_theshold
                 || ray.DistanceToLine(points[notNorInsec]) > insecP_DistBetweenRay_theshold)
             {
-                // this two intersection is too close, so let them become same one.s
+                System.Console.WriteLine("Warining: two intersection is too far");
+                // this two intersection is too far, so let them become same one.s
                 norInsec = notNorInsec;
+                return;
             }
 
-            if (norInsec == -1)
-            {
-                norInsec = notNorInsec;
-            }
-            else if (notNorInsec == -1)
-            {
-                notNorInsec = norInsec;
-            }
-            else if (norInsec == -1 && notNorInsec == -1)
-            {
-                System.Console.WriteLine("Error: Ray Tracein3DPlane, no intersection points");
-            }
         }
 
         public void BuildBoundaryPoints(List<MyVector2> Boundary2)
@@ -961,6 +1063,32 @@ namespace SmartCanvas
             }
             return list;
 
+        }
+
+        public void Snap(string imgname)
+        {
+            this.view.Refresh();
+            int w = this.mark.Width;
+            int h = this.mark.Height;
+
+            Image<Bgr, byte> snapshot = new Image<Bgr, byte>(w, h);
+            Byte[] pixels = new Byte[w * h * 3];
+            GL.ReadBuffer(ReadBufferMode.Front);
+            GL.ReadPixels(0, this.view.Height - this.mark.Height, w, h, PixelFormat.Rgb, PixelType.UnsignedByte, pixels);
+            GL.ReadBuffer(ReadBufferMode.Back);
+
+            for (int j = 0; j < h; j++)
+            {
+                for (int i = 0; i < w; i++)
+                {
+                    byte r = pixels[(j * w + i) * 3 + 0];
+                    byte g = pixels[(j * w + i) * 3 + 1];
+                    byte b = pixels[(j * w + i) * 3 + 2];
+                    snapshot[h - 1 - j, i] = new Bgr(b, g, r);
+                }
+            }
+            snapshot.Save(imgname.ToString() + ".jpg");
+            new ImageViewer(snapshot, "snapshot").Show();
         }
 
         public List<MyVector3> Proj2dToPlane(MyPlane plane, List<MyVector2> points)
