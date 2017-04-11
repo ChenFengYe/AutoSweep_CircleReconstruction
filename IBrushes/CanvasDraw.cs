@@ -149,7 +149,7 @@ namespace SmartCanvas
             /* --------------------------------------------------------------------------*/
 
 
-            DrawAxis();
+            //DrawAxis();
 
             // draw highlights
             this.DrawHighlights3D();
@@ -231,7 +231,9 @@ namespace SmartCanvas
             //}
             //GL.End();
 
-
+            this.BlobDraw();
+            
+            
             GL.Enable(EnableCap.Lighting);
 
 

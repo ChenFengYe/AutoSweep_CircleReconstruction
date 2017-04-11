@@ -130,8 +130,11 @@ namespace SmartCanvas
                 this.sketchView.CurrCanvasEngine.CreateDefaultCamera(1);
                 this.sketchView.CurrCanvasEngine.SetTransformCenter();
 
+                this.sketchView.CurrCanvasEngine.ComputeBlobScore();
+
+
                 string imgdir = d.FileName.Substring(0, d.FileName.LastIndexOf('.') + 1);
-                this.sketchView.CurrCanvasEngine.ReadTopCircle(imgdir + "circle");
+                //this.sketchView.CurrCanvasEngine.ReadTopCircle(imgdir + "circle");
                 // save file prefix for late IO
                 string tmp = d.FileName.Substring(d.FileName.LastIndexOf('\\') + 1);
                 this.sketchView.CurrCanvasEngine.file_prefix = tmp.Substring(0, tmp.LastIndexOf('.'));

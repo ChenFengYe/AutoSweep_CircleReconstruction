@@ -215,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CanvasIO.cs" />
+    <Compile Include="ellipse.cs" />
     <Compile Include="MyDataType\KDTree.cs" />
     <Compile Include="MyGeometry\MyCircle.cs" />
     <Compile Include="MyGeometry\MyGCuboid.cs" />
